@@ -7,14 +7,15 @@ var attack=false
 
 signal on_click(robot, actions)
 
+
 func _process(delta):
 	if get_node("Timer").is_stopped() == false and (abs(movedata[0].length - get_node("Timer").time_left - movedata[0].timing) <=   movedata[0].precision):
 		set("modulate", Color(.8,.2,.2))
 	else:
 		set("modulate", Color(1,1,1))
 	update()
-	pass
-	
+
+
 func on_click():
 	emit_signal("on_click", self, actions)
 	if get_node("Timer").is_stopped() == false and (abs(movedata[0].length - get_node("Timer").time_left - movedata[0].timing) <=   movedata[0].precision):
@@ -31,4 +32,9 @@ func actionmove(var index):
 			Tween.TRANS_BACK,Tween.EASE_OUT)
 	get_node("Tween").start()
 	print("timer starting")
-	pass
+
+
+func _on_Area2D_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
+		on_click()
+
