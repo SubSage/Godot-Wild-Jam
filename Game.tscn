@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Battle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/ActionList.tscn" type="PackedScene" id=2]
 
-[node name="Game" type="Node"]
+[node name="Game" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
-[node name="Battle" parent="." index="0" instance=ExtResource( 2 )]
+[node name="ActionList" parent="." index="0" instance=ExtResource( 2 )]
 
-position = Vector2( 1.22772, -1.22766 )
+[connection signal="action_chosen" from="ActionList" to="." method="_on_ActionList_action_chosen"]
 
 

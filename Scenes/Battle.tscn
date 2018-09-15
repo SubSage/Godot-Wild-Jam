@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scenes/Battle.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Battle.gd" type="Script" id=1]
 
 [node name="Battle" type="Node2D"]
 
@@ -13,9 +13,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 81.0
-margin_top = 45.0
+margin_top = 44.0
 margin_right = 396.0
-margin_bottom = 339.0
+margin_bottom = 338.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = true
 focus_mode = 2
