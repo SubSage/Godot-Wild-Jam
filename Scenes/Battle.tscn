@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://Scenes/Battle.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Robot.tscn" type="PackedScene" id=2]
 
 [node name="Battle" type="Node2D"]
 
@@ -9,7 +8,6 @@ script = ExtResource( 1 )
 
 [node name="ItemList" type="ItemList" parent="." index="0"]
 
-visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -30,80 +28,6 @@ select_mode = 0
 allow_reselect = false
 icon_mode = 1
 fixed_icon_size = Vector2( 0, 0 )
-
-[node name="Robot" parent="." index="1" instance=ExtResource( 2 )]
-
-position = Vector2( 592.505, 508.528 )
-
-[node name="Robot9" parent="." index="2" instance=ExtResource( 2 )]
-
-position = Vector2( 629.828, 387.228 )
-
-[node name="Robot10" parent="." index="3" instance=ExtResource( 2 )]
-
-position = Vector2( 712.639, 286.922 )
-rotation = -1.54996
-
-[node name="Robot11" parent="." index="4" instance=ExtResource( 2 )]
-
-position = Vector2( 608.834, 178.451 )
-rotation = -1.54996
-
-[node name="Robot2" parent="." index="5" instance=ExtResource( 2 )]
-
-position = Vector2( 739.465, 492.199 )
-
-[node name="Robot3" parent="." index="6" instance=ExtResource( 2 )]
-
-position = Vector2( 449.301, 835.515 )
-
-[node name="Robot4" parent="." index="7" instance=ExtResource( 2 )]
-
-position = Vector2( 79.3118, 536.521 )
-
-[node name="Robot5" parent="." index="8" instance=ExtResource( 2 )]
-
-position = Vector2( 541.186, 589.006 )
-
-[node name="Robot6" parent="." index="9" instance=ExtResource( 2 )]
-
-position = Vector2( 750.655, 794.974 )
-rotation = 0.0198205
-
-[node name="Robot12" parent="." index="10" instance=ExtResource( 2 )]
-
-position = Vector2( 1017.88, 399.405 )
-rotation = 0.0198205
-
-[node name="Robot13" parent="." index="11" instance=ExtResource( 2 )]
-
-position = Vector2( 887.786, 612.133 )
-rotation = 0.0198205
-
-[node name="Robot14" parent="." index="12" instance=ExtResource( 2 )]
-
-position = Vector2( 894.818, 128.66 )
-rotation = 0.0198205
-
-[node name="Robot15" parent="." index="13" instance=ExtResource( 2 )]
-
-position = Vector2( 747.139, 100.531 )
-rotation = 2.2134
-
-[node name="Robot16" parent="." index="14" instance=ExtResource( 2 )]
-
-position = Vector2( 891.302, 299.194 )
-rotation = 2.2134
-
-[node name="Robot7" parent="." index="15" instance=ExtResource( 2 )]
-
-position = Vector2( 459.542, 115.469 )
-rotation = 0.0198205
-
-[node name="Robot8" parent="." index="16" instance=ExtResource( 2 )]
-
-position = Vector2( 237.412, 782.232 )
-rotation = 1.07449
 
 [connection signal="item_activated" from="ItemList" to="." method="_on_ItemList_item_activated"]
 

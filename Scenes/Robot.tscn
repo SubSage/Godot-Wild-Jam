@@ -11,7 +11,6 @@ extents = Vector2( 32, 32 )
 
 [node name="Robot" type="Sprite" index="0"]
 
-modulate = Color( 0.190659, 0.312411, 0.410156, 1 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Visibility", "Z Index" ]

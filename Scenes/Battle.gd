@@ -5,6 +5,7 @@ var enemies = {}
 var robots = {}
 var Robot = preload("res://Scenes/Robot.tscn")
 var Enemy = preload("res://Scenes/Enemy.tscn")
+var selectedRobot
 
 #change to load up proper robot(player)/ enemy data
 func _ready():
@@ -28,11 +29,13 @@ func _ready():
 	pass
 
 func getActionList(var list):
-	var x = list[0].duplicate()
+	var x = list[1].duplicate()
 	get_node("ItemList").clear()
 	for k in x.keys():
 		get_node("ItemList").add_item(x[k],null,true)
 	get_node("ItemList").visible=true
+	selectedRobot=list[0]
+	print(selectedRobot)
 	pass
 
 
@@ -42,10 +45,11 @@ func _on_ItemList_nothing_selected():
 
 
 func _on_ItemList_item_selected(index):
-	print("item selected #" + str(index))
+#	print("item selected #" + str(index))
 	pass # replace with function body
 
 
 func _on_ItemList_item_activated(index):
-	print("item activated #" + str(index))
+	print("item activated #" + str(get_node("ItemList").get_item_text(index)))
+	selectedRobot.actionmove(get_node("ItemList").get_item_text(index))
 	pass # replace with function body
