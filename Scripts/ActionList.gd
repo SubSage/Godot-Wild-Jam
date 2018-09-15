@@ -2,19 +2,10 @@ extends Node2D
 
 signal action_chosen(action)
 
-#These are a bunch of default options.
-#TODO: Replace the values with "null" so that the program
-#will always crash if it isn't initialized by the user
 var options = null
 
 func _ready():
 	_update_options()
-
-func _process(delta):
-	if options == null:
-		self.hide()
-	else:
-		self.show()
 
 func _update_options():
 	if options == null:
@@ -24,9 +15,15 @@ func _update_options():
 	
 	for key in options:
 		$ItemList.add_item(key, null, true)
-		pass
+	
+	
 
 func replace_options(new_options):
+	if options == null:
+		self.hide()
+	else:
+		self.show()
+	
 	options = new_options
 	_update_options()
 
