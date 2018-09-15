@@ -1,6 +1,9 @@
 extends Node
 
 func _ready():
+	$Sprite.visible=true
+	yield(get_tree().create_timer(.05), "timeout")
+	$Sprite.visible=false
 	pass
 
 func _process(delta):
