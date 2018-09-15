@@ -10,27 +10,25 @@ var selectedRobot
 #change to load up proper robot(player)/ enemy data
 func _ready():
 	var r = Robot.instance()
-	var e = Enemy.instance()
-	add_child(r)
-	add_child(e)
-	r.position = Vector2(300,600)
-	e.position = Vector2(1400,600)
-	
 	r.connect("on_click", self, "getActionList")
+	r.position = Vector2(300,600)
+	add_child(r)
+	
+	var e = Enemy.instance()
+	e.position = Vector2(1400,600)
+	add_child(e)
 	
 	var rr = Robot.instance()
-	var ee = Enemy.instance()
-	add_child(rr)
-	add_child(ee)
 	rr.position = Vector2(500,400)
-	ee.position = Vector2(1600,400)
-	rr.actions["test"]="teststst"
-	rr.actions["tesssdfsdft"]="big boom attack"
-	rr.actions["t3"]="YAS DADDY"
-	rr.actions["teddddddddddddd"]="tst"
+	rr.actions["test"] = "testattack"
+	rr.actions["Nothing Important"] = "anothertestattack"
+	add_child(rr)
 	
+	var ee = Enemy.instance()
+	ee.position = Vector2(1600,400)
 	rr.connect("on_click", self, "getActionList")
-	pass
+	add_child(ee)
+
 
 func getActionList(robot, actions):
 	get_node("ActionList").replace_options(actions)
