@@ -48,7 +48,7 @@ anim_offset_random = 0.0
 anim_loop = false
 _sections_unfolded = [ "Angle", "Color", "Hue Variation" ]
 
-[node name="Robot" type="Sprite"]
+[node name="Robot" type="Sprite" index="0"]
 
 texture = ExtResource( 1 )
 script = ExtResource( 2 )

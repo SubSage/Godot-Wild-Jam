@@ -1,6 +1,14 @@
 extends Sprite
+
 var health = 100
-var actions = {attack1 = "attack1", attack2 = "attack2", defense = "defend", def2 = "def2"}
+
+var actions = {
+	"Normal Attack": "attack_normal",
+	"Special Attack": "attack_special",
+	"Defend": "defend",
+	"Wait": "wait"
+}
+
 var movedata= [{hits=1, length=5, timing=2, precision = .2}]
 
 var attack=false
