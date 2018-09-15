@@ -1,31 +1,52 @@
 extends Node2D
 
+
 signal action_chosen(action)
+
 
 var options = null
 
+
+#Magic numbers are bad, but there's no documentation on how to get a theme's font that I can find
+const fontHeight = 16
+
+
+onready var spacingHeight = $ItemList.theme.get_constant("Vseparation", "int")
+
+
 func _ready():
-	_update_options()
+	replace_options(null)
 
-func _update_options():
-	if options == null:
-		return
-	
-	$ItemList.clear()
-	
-	for key in options:
-		$ItemList.add_item(key, null, true)
-	
-	
 
-func replace_options(new_options):
+func _process(delta):
 	if options == null:
 		self.hide()
+		return
 	else:
 		self.show()
 	
+	#I would rather not put this in the _process function, but if I put it in
+	#_update_options, it needs to be double-clicked for it to work.
+	var newHeight = 0.0
+	newHeight += (fontHeight + spacingHeight) * options.size()
+	
+	$ItemList.set_anchor(MARGIN_BOTTOM, newHeight)
+
+
+func _update_options():	
+	$ItemList.clear()
+	
+	if options == null:
+		return
+	
+	for key in options:
+		$ItemList.add_item(key, null, true)
+
+
+func replace_options(new_options):
 	options = new_options
 	_update_options()
+
 
 func _on_ItemList_item_activated(index):
 	emit_signal("action_chosen", options[$ItemList.get_item_text(index)])
