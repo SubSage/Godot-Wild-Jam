@@ -9,13 +9,15 @@ var selectedRobot
 
 #change to load up proper robot(player)/ enemy data
 func _ready():
-	
 	var r = Robot.instance()
 	var e = Enemy.instance()
 	add_child(r)
 	add_child(e)
 	r.position = Vector2(300,600)
 	e.position = Vector2(1400,600)
+	
+	r.connect("on_click", self, "getActionList")
+	
 	var rr = Robot.instance()
 	var ee = Enemy.instance()
 	add_child(rr)
@@ -26,30 +28,16 @@ func _ready():
 	rr.actions["tesssdfsdft"]="big boom attack"
 	rr.actions["t3"]="YAS DADDY"
 	rr.actions["teddddddddddddd"]="tst"
+	
+	rr.connect("on_click", self, "getActionList")
 	pass
 
-func getActionList(var list):
-	var x = list[1].duplicate()
-	get_node("ItemList").clear()
-	for k in x.keys():
-		get_node("ItemList").add_item(x[k],null,true)
-	get_node("ItemList").visible=true
-	selectedRobot=list[0]
+func getActionList(robot, actions):
+	get_node("ActionList").replace_options(actions)
+	selectedRobot=robot
 	print(selectedRobot)
-	pass
 
 
-func _on_ItemList_nothing_selected():
-	print("nothing selected")
-	pass # replace with function body
-
-
-func _on_ItemList_item_selected(index):
-#	print("item selected #" + str(index))
-	pass # replace with function body
-
-
-func _on_ItemList_item_activated(index):
-	print("item activated #" + str(get_node("ItemList").get_item_text(index)))
-	selectedRobot.actionmove(get_node("ItemList").get_item_text(index))
-	pass # replace with function body
+func _on_ActionList_action_chosen(action):
+	print("item activated #" + action)
+	selectedRobot.actionmove(action)

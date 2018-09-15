@@ -2,16 +2,24 @@ extends Node2D
 
 signal action_chosen(action)
 
-var options = {
-	"Normal Attack": "normalattack",
-	"Special Attack": "specialattack",
-	"Defend": "defend"
-}
+#These are a bunch of default options.
+#TODO: Replace the values with "null" so that the program
+#will always crash if it isn't initialized by the user
+var options = null
 
 func _ready():
 	_update_options()
 
+func _process(delta):
+	if options == null:
+		self.hide()
+	else:
+		self.show()
+
 func _update_options():
+	if options == null:
+		return
+	
 	$ItemList.clear()
 	
 	for key in options:
