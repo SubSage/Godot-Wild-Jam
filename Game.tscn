@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/Battle.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Art/splash_screen.png" type="Texture" id=3]
 
-[node name="Game" type="Node"]
+[node name="Game" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
