@@ -49,7 +49,7 @@ allow_reselect = false
 auto_height = true
 icon_mode = 1
 fixed_icon_size = Vector2( 0, 0 )
-_sections_unfolded = [ "Columns", "Theme" ]
+_sections_unfolded = [ "Columns", "Pause", "Theme" ]
 
 [connection signal="item_activated" from="ItemList" to="." method="_on_ItemList_item_activated"]
 

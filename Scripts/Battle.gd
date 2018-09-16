@@ -2,40 +2,48 @@ extends Node2D
 
 var turn = 0
 var enemies = {}
-var robots = {}
+var robots = []
 var Robot = preload("res://Scenes/Robot.tscn")
 var Enemy = preload("res://Scenes/Enemy.tscn")
 var selectedRobot
+onready var actionlist = $ActionList
 
 #change to load up proper robot(player)/ enemy data
 func _ready():
 	var r = Robot.instance()
 	r.connect("on_click", self, "getActionList")
-	r.position = Vector2(300,600)
+	r.connect("busy", self, "robot_busy")
+	r.position = Vector2(300,500)
+	selectedRobot=r
 	add_child(r)
+	move_child(r,0)
+	robots.append(r)
 	
 	var e = Enemy.instance()
 	e.position = Vector2(1400,600)
 	add_child(e)
-	
-	var rr = Robot.instance()
-	rr.position = Vector2(500,400)
-	rr.actions["test"] = "testattack"
-	rr.actions["Nothing Important"] = "anothertestattack"
-	add_child(rr)
+	move_child(e,0)
 	
 	var ee = Enemy.instance()
 	ee.position = Vector2(1600,400)
-	rr.connect("on_click", self, "getActionList")
 	add_child(ee)
+	getActionList(r, r.actions)
 
+func robot_busy(duration):
+	$Timer.wait_time=duration
+	$Timer.start()
+	actionlist.pause(true)
 
 func getActionList(robot, actions):
-	get_node("ActionList").replace_options(actions)
+	actionlist.replace_options(actions)
 	selectedRobot=robot
-	print(selectedRobot)
+	actionlist.position = Vector2(robot.position.x, robot.position.y + robot.get_texture().get_height()/2)
 
 
 func _on_ActionList_action_chosen(action):
-	print("item activated #" + action)
 	selectedRobot.actionmove(action)
+	turn+=1
+
+
+func _on_Timer_timeout():
+	actionlist.pause(false)
