@@ -12,14 +12,12 @@ config_version=3
 
 config/name="Godot Wild Jam"
 run/main_scene="res://Game.tscn"
-boot_splash/image="res://Assets/Art/splash_screen.png"
 config/icon="res://icon.png"
 
 [display]
 
 window/size/width=1920
 window/size/height=1080
-window/size/fullscreen=true
 
 [input]
 
