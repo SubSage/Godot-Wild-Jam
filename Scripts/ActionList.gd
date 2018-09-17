@@ -37,6 +37,7 @@ func _update_options():
 		$ItemList.add_item(key, null, true)
 		
 	$ItemList.grab_focus()
+	$ItemList.select(0)
 
 func replace_options(new_options):
 	options = new_options

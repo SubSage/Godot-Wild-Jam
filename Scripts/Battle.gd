@@ -1,14 +1,13 @@
 extends Node
 
 var turn = 0
-var enemies = {}
+var enemies = []
 var robots = []
 var Robot = preload("res://Scenes/Robot.tscn")
 var Enemy = preload("res://Scenes/Enemy.tscn")
 var selectedRobot
 onready var actionlist = $ActionList
 
-#change to load up proper robot(player)/ enemy data
 func _ready():
 	var r = Robot.instance()
 	r.connect("on_click", self, "getActionList")
@@ -28,6 +27,12 @@ func _ready():
 	ee.position = Vector2(1600,400)
 	add_child(ee)
 	getActionList(r, r.actions)
+	enemies.append(e)
+	enemies.append(ee)
+
+func _process(delta):
+	if Input.is_action_just_pressed("ui_quit"):
+		get_tree().change_scene("res://Scenes/MainMenu.tscn")
 
 func robot_busy(duration):
 	$Timer.wait_time=duration
@@ -35,14 +40,15 @@ func robot_busy(duration):
 	actionlist.pause(true)
 
 func getActionList(robot, actions):
-	actionlist.replace_options(actions)
 	selectedRobot=robot
 	actionlist.position = Vector2(robot.position.x, robot.position.y + robot.get_texture().get_height()/2)
+	actionlist.replace_options(actions)
 
 
 func _on_ActionList_action_chosen(action):
 	selectedRobot.actionmove(action)
 	turn+=1
+	print(turn)
 
 
 func _on_Timer_timeout():

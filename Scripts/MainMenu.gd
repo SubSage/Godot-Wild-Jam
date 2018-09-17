@@ -1,6 +1,8 @@
 extends Node
 
 func _ready():
+	$ItemList.grab_focus()
+	$ItemList.select(0)
 	pass
 
 func _process(delta):

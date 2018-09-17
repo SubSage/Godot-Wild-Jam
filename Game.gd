@@ -1,7 +1,12 @@
 extends Node
 
 func _ready():
-	
+	$Sprite.visible=true
+	yield(get_tree().create_timer(.5), "timeout")
+	$Sprite.visible=false 
+	$ItemList.grab_focus()
+	$ItemList.select(0)
+	$ItemList.connect("item_selected", self, "ui_move_sound")
 	pass
 
 func _process(delta):
@@ -31,3 +36,7 @@ func _option_continue_game():
 
 func _option_quit_game():
 	get_tree().quit()
+
+func ui_move_sound(index):
+	$AudioStreamPlayer.play()
+	pass # replace with function body
