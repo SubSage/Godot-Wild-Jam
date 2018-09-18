@@ -80,7 +80,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.40625, 0.192017, 0.192017, 1 ), Color( 0.199219, 0.157974, 0.157974, 1 ) ]
 }
 
-[node name="Robot" type="Sprite"]
+[node name="Robot" type="Sprite" index="0"]
 
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )

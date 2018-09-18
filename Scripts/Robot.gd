@@ -3,18 +3,22 @@ extends Sprite
 var health = 100
 
 var actions = {
-	"Normal Attack": "attack_normal",
+	"Sword Attack": "attack_normal",
 	"Special Attack": "attack_special",
 	"Defend": "defend",
 	"Wait": "wait"
 }
 
-var movedata= [{hits=1, length=5, timing=2, precision = .2}]
+var movedata=[
+	{name= "attack_normal",hits=1, length=5, timing=2, precision = .2},
+	{name= "special_normal",hits=1, length=5, timing=2, precision = .2}]
+
 onready var timer = $Timer
 signal on_click(robot, actions)
 signal busy(duration)
 
 func _ready():
+#	set("visible", false)
 	get_node("Area2D/CollisionShape2D").shape.set("extents", Vector2(get_texture().get_width()/2,get_texture().get_height()/2))
 	$AnimationPlayer.play("idle")
 	
@@ -32,12 +36,12 @@ func on_click():
 	if timer.is_stopped() == false and (abs(movedata[0].length - timer.time_left - movedata[0].timing) <=   movedata[0].precision):
 #		print("you did it!"+ str(timer.time_left) )
 		get_node("Particles2D").restart()
+		
 
 
 func actionmove(var index):
 	if index == "attack_normal":
 		emit_signal("busy", 5)
-		pass
 	timer.wait_time=movedata[0].length
 	timer.start()
 	get_node("Tween").interpolate_property(self, "position",

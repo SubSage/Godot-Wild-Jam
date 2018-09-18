@@ -8,6 +8,7 @@ var Enemy = preload("res://Scenes/Enemy.tscn")
 var selectedRobot
 var selectedEnemy
 var enemy=1
+var rect = Rect2(0,0,10,10)
 onready var actionlist = $ActionList
 
 func _ready():
@@ -58,7 +59,6 @@ func _process(delta):
 func _draw():
 #	var rect = Rect2(selectedEnemy.position,
 #			Vector2(selectedEnemy.get_texture().get_width(), selectedEnemy.get_texture().get_height()))
-#	print(rect)
 #	draw_rect(rect, Color(.5,.3,.5),true)
 	selectedEnemy.set("modulate", Color(1,1,1))
 	pass
