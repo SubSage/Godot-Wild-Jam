@@ -20,13 +20,14 @@ func _ready():
 	robots.append(r)
 	
 	var e = Enemy.instance()
-	e.position = Vector2(1400,600)
+	e.position = Vector2(1200,300)
+	e.scale=Vector2(.6,.6)
 	selectedEnemy = e
 	add_child(e)
 	move_child(e,0)
 	
 	var ee = Enemy.instance()
-	ee.position = Vector2(1600,400)
+	ee.position = Vector2(1600,600)
 	add_child(ee)
 	getActionList(r, r.actions)
 	enemies.append(e)
