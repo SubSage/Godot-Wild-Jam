@@ -7,9 +7,11 @@ var Robot = preload("res://Scenes/Robot.tscn")
 var Enemy = preload("res://Scenes/Enemy.tscn")
 var selectedRobot
 var selectedEnemy
+var enemy=1
 onready var actionlist = $ActionList
 
 func _ready():
+	$AudioStreamPlayer.play()
 	var r = Robot.instance()
 	r.connect("on_click", self, "getActionList")
 	r.connect("busy", self, "robot_busy")
@@ -22,7 +24,6 @@ func _ready():
 	var e = Enemy.instance()
 	e.position = Vector2(1200,300)
 	e.scale=Vector2(.6,.6)
-	selectedEnemy = e
 	add_child(e)
 	move_child(e,0)
 	
@@ -32,23 +33,42 @@ func _ready():
 	getActionList(r, r.actions)
 	enemies.append(e)
 	enemies.append(ee)
-
+	selectedEnemy= enemies[enemy]
+	
 func _process(delta):
 	if Input.is_action_just_pressed("ui_quit"):
 		get_tree().change_scene("res://Scenes/MainMenu.tscn")
+	if Input.is_action_just_pressed("ui_left"):
+		enemy-=1
+		if enemy==-1:
+			enemy=enemies.size()-1
+		$Tween.interpolate_property(selectedEnemy, "position",
+			selectedEnemy.position, Vector2(selectedEnemy.position.x + 100, selectedEnemy.position.y), 1,
+			Tween.TRANS_BACK,Tween.EASE_OUT)
+		$Tween.start()
+		selectedEnemy.set("modulate", Color(.2,.6,.6))
+		selectedEnemy=enemies[enemy]
+		$Tween.interpolate_property(selectedEnemy, "position",
+			selectedEnemy.position, Vector2(selectedEnemy.position.x - 100, selectedEnemy.position.y), 1,
+			Tween.TRANS_BACK,Tween.EASE_OUT)
+		$Tween.start()
+		update()
+
 
 func _draw():
 #	var rect = Rect2(selectedEnemy.position,
 #			Vector2(selectedEnemy.get_texture().get_width(), selectedEnemy.get_texture().get_height()))
 #	print(rect)
 #	draw_rect(rect, Color(.5,.3,.5),true)
-	selectedEnemy.set("modulate", Color(.2,.6,.6))
+	selectedEnemy.set("modulate", Color(1,1,1))
 	pass
+
 
 func robot_busy(duration):
 	$Timer.wait_time=duration
 	$Timer.start()
 	actionlist.pause(true)
+
 
 func getActionList(robot, actions):
 	selectedRobot=robot
