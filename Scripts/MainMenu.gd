@@ -23,7 +23,7 @@ func _option_start_battle():
 	get_tree().change_scene("res://Scenes/Battle.tscn")
 
 func _option_evolve():
-	print("Mech evolution not implimented")
+	get_tree().change_scene("res://Scenes/Upgrade.tscn")
 
 func _option_save():
 	print("Saving not yet implimented")

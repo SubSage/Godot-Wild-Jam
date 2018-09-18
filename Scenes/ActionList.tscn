@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/ActionList.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Themes/ItemList.theme" type="Theme" id=2]
 
-[node name="ActionList" type="Node2D"]
+[node name="ActionList" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
@@ -28,9 +28,10 @@ items = [ "just so it", null, false, "displays", null, false, "right", null, fal
 select_mode = 0
 allow_reselect = false
 auto_height = true
+same_column_width = true
 icon_mode = 1
 fixed_icon_size = Vector2( 0, 0 )
-_sections_unfolded = [ "Columns", "Pause", "Theme" ]
+_sections_unfolded = [ "Anchor", "Columns", "Focus", "Grow Direction", "Hint", "Icon", "Margin", "Mouse", "Pause", "Rect", "Size Flags", "Theme", "custom_colors", "custom_fonts", "custom_styles" ]
 
 [connection signal="item_activated" from="ItemList" to="." method="_on_ItemList_item_activated"]
 
