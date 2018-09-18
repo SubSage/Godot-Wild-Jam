@@ -52,3 +52,7 @@ func pause(pause):
 	for item in $ItemList.get_item_count():
 		$ItemList.set_item_disabled(item, pause)
 		$ItemList.set_item_selectable(item, not pause)
+
+func _on_ItemList_item_selected(index):
+	$clicksound.play()
+	pass # replace with function body

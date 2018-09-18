@@ -16,12 +16,14 @@ signal busy(duration)
 
 func _ready():
 	get_node("Area2D/CollisionShape2D").shape.set("extents", Vector2(get_texture().get_width()/2,get_texture().get_height()/2))
-
+	$AnimationPlayer.play("idle")
+	
 func _process(delta):
 	if timer.is_stopped() == false and (abs(movedata[0].length - timer.time_left - movedata[0].timing) <=   movedata[0].precision):
 		set("modulate", Color(.8,.2,.2))
 	else:
-		set("modulate", Color(1,1,1))
+		pass
+#		set("modulate", Color(1,1,1))
 #	update()
 
 

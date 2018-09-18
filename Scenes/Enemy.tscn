@@ -9,9 +9,8 @@ extents = Vector2( 32, 32 )
 
 [node name="Enemy" type="Sprite"]
 
-modulate = Color( 0.574219, 0.179443, 0.179443, 1 )
 texture = ExtResource( 1 )
-_sections_unfolded = [ "Visibility" ]
+_sections_unfolded = [ "Material", "Visibility" ]
 
 [node name="Area2D" type="Area2D" parent="." index="0"]
 
