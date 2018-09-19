@@ -84,11 +84,7 @@ func robot_busy(duration, dmg):
 			if enemy<=0:
 				enemy=enemies.size()-1
 			selectedEnemy=enemies[enemy]
-#	if enemy==0:
-#		enemy=enemies.size()-1
-	print("enemy attacked : " + str(enemy))
-#	selectedEnemy=enemies[enemy]
-	print("new enemy focus: " + str(enemy))
+	
 	update()
 
 func getActionList(robot, actions):

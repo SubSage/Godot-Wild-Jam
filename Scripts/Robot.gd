@@ -20,14 +20,14 @@ signal busy(duration, dmg)
 func _ready():
 #	set("visible", false)
 	get_node("Area2D/CollisionShape2D").shape.set("extents", Vector2(get_texture().get_width()/2,get_texture().get_height()/2))
-	$AnimationPlayer.play("idle")
+#	$AnimationPlayer.play("idle")
 	
 func _process(delta):
 	if timer.is_stopped() == false and (abs(movedata[0].length - timer.time_left - movedata[0].timing) <=   movedata[0].precision):
 		set("modulate", Color(.8,.2,.2))
 	else:
 		pass
-#		set("modulate", Color(1,1,1))
+		set("modulate", Color(1,1,1))
 #	update()
 
 
@@ -36,6 +36,7 @@ func on_click():
 	if timer.is_stopped() == false and (abs(movedata[0].length - timer.time_left - movedata[0].timing) <=   movedata[0].precision):
 #		print("you did it!"+ str(timer.time_left) )
 		get_node("Particles2D").restart()
+		actionmove("attack_normal")
 		
 
 

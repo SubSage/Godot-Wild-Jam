@@ -18,5 +18,7 @@ func attacked(x):
 	if hp <= 0:
 		set("modulate", Color(.3,.3,.3))
 #		queue_free()
-		pass
+	else:
+		$Tween.interpolate_property(self, "modulate", Color(.3,.3,.3), Color(1,1,1), 1,Tween.TRANS_BACK,Tween.EASE_IN)
+		$Tween.start()
 		
