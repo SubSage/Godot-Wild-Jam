@@ -1,17 +1,19 @@
 extends Node
 
+var options = {
+	"test": "test",
+	"test2": "test2",
+	"test3": "b luh",
+	"test4": "hi",
+	"test5": "god"
+}
 
-var options = null
+func _ready():
+	_load_available_options()
 
+func _load_available_options():
+	$ActionList.replace_options(options)
 
-onready var fontHeight = $ItemList.theme.get_font("font", "").get_height()
-
-
-onready var spacingHeight = $ItemList.theme.get_constant("Vseparation", "int")
-
-
-func _process(delta):
-	var newHeight = 0.0
-	newHeight += (fontHeight + spacingHeight) * $ItemList.get_item_count() / 2
-	
-	$ItemList.set_anchor(MARGIN_BOTTOM, newHeight)
+func _on_ActionList_action_chosen(action):
+	#Put code to handle that here
+	pass

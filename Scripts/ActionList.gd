@@ -1,30 +1,26 @@
-extends Node2D
+extends Control
+
 
 signal action_chosen(action)
+
+
+export (int) var columns = 1
+
 
 var options = null
 
 
-onready var fontHeight = $ItemList.theme.get_font("font", "").get_height()
-
-onready var spacingHeight = $ItemList.theme.get_constant("Vseparation", "int")
-
 func _ready():
+	$ItemList.max_columns = columns
+	
 	replace_options(null)
 
-func _process(delta):
+func _process(delta):	
 	if options == null:
 		self.hide()
 		return
 	else:
 		self.show()
-	
-	#I would rather not put this in the _process function, but if I put it in
-	#_update_options, it needs to be double-clicked for it to work.
-	var newHeight = 0.0
-	newHeight += (fontHeight + spacingHeight) * options.size()
-	
-	$ItemList.set_anchor(MARGIN_BOTTOM, newHeight)
 
 
 func _update_options():
