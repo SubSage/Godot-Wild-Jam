@@ -1,6 +1,7 @@
 extends Sprite
 
 var hp = 5
+var gsprite = preload("res://Assets/Art/better icon dummy.png")
 
 func _ready():
 	# Called when the node is added to the scene for the first time.
@@ -16,6 +17,7 @@ func attacked(x):
 	hp -= x
 	print(hp)
 	if hp <= 0:
+		self.set_texture(gsprite)
 		set("modulate", Color(.3,.3,.3))
 #		queue_free()
 	else:
