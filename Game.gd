@@ -2,7 +2,7 @@ extends Node
 
 func _ready():
 	$Sprite.visible=true
-	yield(get_tree().create_timer(.5), "timeout")
+	yield(get_tree().create_timer(2), "timeout")
 	$Sprite.visible=false 
 	$ItemList.grab_focus()
 	$ItemList.select(0)

@@ -30,11 +30,25 @@ func _ready():
 	move_child(e,0)
 	
 	var ee = Enemy.instance()
-	ee.position = Vector2(1600,600)
+	ee.position = Vector2(1400,600)
 	add_child(ee)
+	
+	var eee = Enemy.instance()
+	eee.position = Vector2(1600,900)
+	add_child(eee)
 	getActionList(r, r.actions)
 	enemies.append(e)
 	enemies.append(ee)
+	enemies.append(eee)
+	
+	for en in range(30):
+		var en2 = Enemy.instance()
+		en2.position = Vector2(1000 +randi()%800, 250 + randi()%750)
+		add_child(en2)
+		enemies.append(en2)
+		en2.z_index=-2
+	e.z_index=-2
+	ee.z_index=-2
 	selectedEnemy= enemies[enemy]
 	
 func _process(delta):
@@ -66,10 +80,10 @@ func _draw():
 #			Vector2(selectedEnemy.get_texture().get_width(), selectedEnemy.get_texture().get_height()))
 #	draw_rect(rect, Color(.5,.3,.5),true)
 	enemies[enemy].set("modulate", Color(1,1,1))
-	pass
 
 
 func robot_busy(duration, dmg):
+	
 	$Timer.wait_time=duration
 	$Timer.start()
 	actionlist.pause(true)

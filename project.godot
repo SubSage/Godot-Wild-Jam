@@ -12,7 +12,7 @@ config_version=3
 
 config/name="Godot Wild Jam"
 run/main_scene="res://Game.tscn"
-config/icon="res://icon.png"
+config/icon="res://Assets/Art/splash_screen.png"
 
 [display]
 
