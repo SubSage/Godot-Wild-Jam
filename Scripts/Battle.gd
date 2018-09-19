@@ -37,7 +37,6 @@ func robot_busy(duration):
 func getActionList(robot, actions):
 	actionlist.replace_options(actions)
 	selectedRobot=robot
-	actionlist.position = Vector2(robot.position.x, robot.position.y + robot.get_texture().get_height()/2)
 
 
 func _on_ActionList_action_chosen(action):
