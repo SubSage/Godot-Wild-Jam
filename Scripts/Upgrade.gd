@@ -13,7 +13,6 @@ onready var spacingHeight = $ItemList.theme.get_constant("Vseparation", "int")
 
 func _process(delta):
 	var newHeight = 0.0
-	newHeight += (fontHeight + spacingHeight) * 2000
-	print(str(newHeight))
+	newHeight += (fontHeight + spacingHeight) * $ItemList.get_item_count() / 2
 	
 	$ItemList.set_anchor(MARGIN_BOTTOM, newHeight)
