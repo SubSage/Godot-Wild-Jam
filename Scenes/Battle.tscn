@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/ActionList.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Audio/Godot Game jam Combat theme.wav" type="AudioStream" id=3]
 
-[node name="Battle" type="Node2D"]
+[node name="Battle" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -22,7 +22,7 @@ autostart = false
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="2"]
 
 stream = ExtResource( 3 )
-volume_db = -16.97
+volume_db = -10.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0

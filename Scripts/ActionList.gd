@@ -56,7 +56,10 @@ func pause(pause):
 		$ItemList.release_focus()
 	else:
 		$ItemList.grab_focus()
+		pass
 
+func is_paused():
+	return $ItemList.has_focus()
 
 func _on_ItemList_item_selected(index):
 	if $ItemList.is_item_selectable(index):

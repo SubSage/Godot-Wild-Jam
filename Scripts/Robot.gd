@@ -10,12 +10,12 @@ var actions = {
 }
 
 var movedata=[
-	{name= "attack_normal",hits=1, length=5, timing=2, precision = .2},
-	{name= "special_normal",hits=1, length=5, timing=2, precision = .2}]
+	{name= "attack_normal",hits=1, length=2, timing=2, precision = .2},
+	{name= "special_normal",hits=1, length=2, timing=2, precision = .2}]
 
 onready var timer = $Timer
 signal on_click(robot, actions)
-signal busy(duration)
+signal busy(duration, dmg)
 
 func _ready():
 #	set("visible", false)
@@ -41,7 +41,7 @@ func on_click():
 
 func actionmove(var index):
 	if index == "attack_normal":
-		emit_signal("busy", 5)
+		emit_signal("busy", movedata[0].length, 1)
 	timer.wait_time=movedata[0].length
 	timer.start()
 	get_node("Tween").interpolate_property(self, "position",
