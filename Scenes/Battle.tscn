@@ -9,6 +9,8 @@ script = ExtResource( 1 )
 
 [node name="ActionList" parent="." index="0" instance=ExtResource( 2 )]
 
+margin_top = 773.0
+margin_bottom = 773.0
 _sections_unfolded = [ "Anchor", "Margin", "Pause", "Theme", "Transform" ]
 columns = 1
 

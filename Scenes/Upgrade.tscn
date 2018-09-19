@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Upgrade.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/ActionList.tscn" type="PackedScene" id=2]
 
-[node name="Node" type="Node" index="0"]
+[node name="Node" type="Node"]
 
 script = ExtResource( 1 )
 
