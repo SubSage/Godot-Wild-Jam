@@ -7,7 +7,7 @@ var Robot = preload("res://Scenes/Robot.tscn")
 var Enemy = preload("res://Scenes/Enemy.tscn")
 var selectedRobot
 var selectedEnemy
-var enemy=1
+var enemy=0
 var rect = Rect2(0,0,10,10)
 var focusswitchtime = .2
 onready var actionlist = $ActionList
@@ -41,15 +41,16 @@ func _ready():
 	enemies.append(ee)
 	enemies.append(eee)
 	
-	for en in range(30):
-		var en2 = Enemy.instance()
-		en2.position = Vector2(1000 +randi()%800, 250 + randi()%750)
-		add_child(en2)
-		enemies.append(en2)
-		en2.z_index=-2
+#	for en in range(30):
+#		var en2 = Enemy.instance()
+#		en2.position = Vector2(1000 +randi()%800, 250 + randi()%750)
+#		add_child(en2)
+#		enemies.append(en2)
+#		en2.z_index=-2
 	e.z_index=-2
 	ee.z_index=-2
 	selectedEnemy= enemies[enemy]
+	enemies[enemy].set("modulate", Color(1,1,1))
 	
 func _process(delta):
 	if Input.is_action_just_pressed("ui_quit"):
@@ -66,6 +67,8 @@ func _process(delta):
 		
 		selectedEnemy.set("modulate", Color(.2,.6,.6))
 		selectedEnemy=enemies[enemy]
+		enemies[enemy].set("modulate", Color(1,1,1))
+		
 		$Tween.interpolate_property(selectedEnemy, "position",
 			selectedEnemy.position, Vector2(selectedEnemy.position.x - 100, selectedEnemy.position.y),
 			focusswitchtime, Tween.TRANS_BACK,Tween.EASE_OUT)
@@ -79,18 +82,21 @@ func _draw():
 #	var rect = Rect2(selectedEnemy.position,
 #			Vector2(selectedEnemy.get_texture().get_width(), selectedEnemy.get_texture().get_height()))
 #	draw_rect(rect, Color(.5,.3,.5),true)
-	enemies[enemy].set("modulate", Color(1,1,1))
-
+	pass
 
 func robot_busy(duration, dmg):
+	if dmg==0:
+		$Timer.wait_time=duration
+		$Timer.start()
+		actionlist.pause(true)
+		return
 	
-	$Timer.wait_time=duration
-	$Timer.start()
-	actionlist.pause(true)
 	selectedEnemy.attacked(dmg)
+	
 	if selectedEnemy.hp <= 0:
+		enemies[enemy].set("modulate", Color(.2,.2,.2))
 		enemies.remove(enemy)
-		print("enemy size: " + str(enemies.size()))
+#		print("enemy size: " + str(enemies.size()))
 		if(enemies.size() == 0):
 			get_tree().change_scene("res://Scenes/MainMenu.tscn")
 		else:
@@ -98,7 +104,13 @@ func robot_busy(duration, dmg):
 			if enemy<=0:
 				enemy=enemies.size()-1
 			selectedEnemy=enemies[enemy]
-	
+			enemies[enemy].set("modulate", Color(1,1,1))
+			robots[0].stopcombo()
+			return
+	else:
+		$Timer.wait_time=duration
+		$Timer.start()
+		actionlist.pause(true)
 	update()
 
 func getActionList(robot, actions):

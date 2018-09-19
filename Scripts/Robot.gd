@@ -1,7 +1,6 @@
 extends Sprite
 
 var health = 100
-
 var actions = {
 	"Sword Attack": "attack_normal",
 	"Special Attack": "attack_special",
@@ -23,33 +22,34 @@ func _ready():
 #	$AnimationPlayer.play("idle")
 	
 func _process(delta):
-	if timer.is_stopped() == false and (abs(movedata[0].length - timer.time_left - movedata[0].timing) <=   movedata[0].precision):
+	if (not timer.is_stopped()) and (abs(movedata[0].length - timer.time_left - movedata[0].timing) <=   movedata[0].precision):
 		set("modulate", Color(.8,.2,.2))
 	else:
-		pass
 		set("modulate", Color(1,1,1))
-#	update()
-
+	update()
 
 func on_click():
 	emit_signal("on_click", self, actions)
-	if timer.is_stopped() == false and (abs(movedata[0].length - timer.time_left - movedata[0].timing) <=   movedata[0].precision):
+	if (not timer.is_stopped()) and (abs(movedata[0].length - timer.time_left - movedata[0].timing) <=   movedata[0].precision):
 #		print("you did it!"+ str(timer.time_left) )
 		get_node("Particles2D").restart()
 		actionmove("attack_normal")
 		
 
 
-func actionmove(var index):
+func actionmove(var index, var combo = 0):
 	if index == "attack_normal":
+		timer.wait_time=movedata[0].length
+		timer.start()
+		get_node("Tween").interpolate_property(self, "position",
+				Vector2(0,0), position, movedata[0].length,
+				Tween.TRANS_BACK,Tween.EASE_OUT)
+		get_node("Tween").start()
 		emit_signal("busy", movedata[0].length, 1)
-	timer.wait_time=movedata[0].length
-	timer.start()
-	get_node("Tween").interpolate_property(self, "position",
-			Vector2(0,0), position, movedata[0].length,
-			Tween.TRANS_BACK,Tween.EASE_OUT)
-	get_node("Tween").start()
 
+func stopcombo():
+	timer.stop()
+	$Tween.reset_all()
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
