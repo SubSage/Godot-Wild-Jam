@@ -10,7 +10,7 @@ func _process(delta):
 	pass
 
 func _on_ItemList_item_activated(index):
-	match index:
+	match 0:
 		0:
 			_option_new_game()
 		1:
