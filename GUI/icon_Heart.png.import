@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemy_healthTint.png-1a807e9376f8a0f8796af6ce6dd95b97.stex"
+path="res://.import/icon_Heart.png-39dbbfa8ad2e1346c16a9bbc632be052.stex"
 
 [deps]
 
-source_file="res://GUI/Enemy/enemy_healthTint.png"
-dest_files=[ "res://.import/enemy_healthTint.png-1a807e9376f8a0f8796af6ce6dd95b97.stex" ]
+source_file="res://GUI/icon_Heart.png"
+dest_files=[ "res://.import/icon_Heart.png-39dbbfa8ad2e1346c16a9bbc632be052.stex" ]
 
 [params]
 

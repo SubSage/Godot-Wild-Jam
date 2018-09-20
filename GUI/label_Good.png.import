@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/reticle_placeholder.png-42ec6ebe699740f445d9f977b59553ed.stex"
+path="res://.import/label_Good.png-ad97ca5382b1b8a8241e10c7d67bb121.stex"
 
 [deps]
 
-source_file="res://GUI/Enemy/reticle_placeholder.png"
-dest_files=[ "res://.import/reticle_placeholder.png-42ec6ebe699740f445d9f977b59553ed.stex" ]
+source_file="res://GUI/label_Good.png"
+dest_files=[ "res://.import/label_Good.png-ad97ca5382b1b8a8241e10c7d67bb121.stex" ]
 
 [params]
 

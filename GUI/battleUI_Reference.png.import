@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemy_healthBackground.png-cf165240a8431e8fd57b243bbc416d54.stex"
+path="res://.import/battleUI_Reference.png-4fd76e95bfdcd421b1ed62a723f23b4d.stex"
 
 [deps]
 
-source_file="res://GUI/Enemy/enemy_healthBackground.png"
-dest_files=[ "res://.import/enemy_healthBackground.png-cf165240a8431e8fd57b243bbc416d54.stex" ]
+source_file="res://GUI/battleUI_Reference.png"
+dest_files=[ "res://.import/battleUI_Reference.png-4fd76e95bfdcd421b1ed62a723f23b4d.stex" ]
 
 [params]
 
