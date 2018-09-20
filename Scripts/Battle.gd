@@ -143,12 +143,14 @@ func _on_ActionList_action_chosen(action):
 
 
 func _on_Timer_timeout():
+	robots[0].stopcombo()
 	if turn % 2 == 0:
 		actionlist.pause(false)
 		enemyphase = false
 	else:
-		actionlist.pause(true)
-		enemyphase = true
+		pass
+	actionlist.pause(false)
+	enemyphase = false
 	print("turn " + str(turn) + " over!")
 	print(enemyphase)
 	pass

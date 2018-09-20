@@ -5,7 +5,7 @@
 [ext_resource path="res://Assets/Art/splash_screen.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Audio/UIClick.wav" type="AudioStream" id=4]
 
-[node name="Game" type="Node"]
+[node name="Game" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
