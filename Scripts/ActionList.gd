@@ -54,8 +54,10 @@ func pause(pause):
 	
 	if pause:
 		$ItemList.release_focus()
+		$ItemList.hide()
 	else:
 		$ItemList.grab_focus()
+		$ItemList.show()
 
 
 func is_paused():
