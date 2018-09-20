@@ -8,11 +8,13 @@ var options = {
 	"test5": "god"
 }
 
+
 func _ready():
 	_load_available_options()
 
 func _load_available_options():
 	$ActionList.replace_options(options)
+
 
 func _on_ActionList_action_chosen(action):
 	pass

@@ -5,11 +5,14 @@ var enemies = []
 var robots = []
 var Robot = preload("res://Scenes/Robot.tscn")
 var Enemy = preload("res://Scenes/Enemy.tscn")
+var UI = preload("res://GUI/Enemy/EnemyStats.tscn")
 var selectedRobot
 var selectedEnemy
-var enemy=1
+var enemy=0
 var rect = Rect2(0,0,10,10)
 var focusswitchtime = .2
+var ui
+var enemyphase = false
 onready var actionlist = $ActionList
 
 func _ready():
@@ -24,59 +27,93 @@ func _ready():
 	robots.append(r)
 	
 	var e = Enemy.instance()
-	e.position = Vector2(1200,300)
-	e.scale=Vector2(.6,.6)
+	e.position = Vector2(1000,350-15)
 	add_child(e)
+	e.scale=Vector2(.55,.55)
 	move_child(e,0)
 	
 	var ee = Enemy.instance()
-	ee.position = Vector2(1600,600)
+	ee.position = Vector2(1200,500-15)
+	ee.scale=Vector2(.7,.7)
 	add_child(ee)
+	
+	var eee = Enemy.instance()
+	eee.position = Vector2(1400,650-15)
+	eee.scale=Vector2(.85,.85)
+	add_child(eee)
+	
+	var eeee = Enemy.instance()
+	eeee.position = Vector2(1600,800-15)
+	add_child(eeee)
 	getActionList(r, r.actions)
 	enemies.append(e)
 	enemies.append(ee)
+	enemies.append(eee)
+	enemies.append(eeee)
+	e.z_index=-2
+	ee.z_index=-2
+	eee.z_index=-2
+	eeee.z_index=-2
 	selectedEnemy= enemies[enemy]
+	enemies[enemy].set("modulate", Color(1,1,1))
+	ui = UI.instance()
+	add_child(ui)
+	ui.rect_position=Vector2(1200, 950)
 	
 func _process(delta):
 	if Input.is_action_just_pressed("ui_quit"):
 		get_tree().change_scene("res://Scenes/MainMenu.tscn")
 		
-	if Input.is_action_just_pressed("ui_left") and actionlist.is_paused():
-		enemy-=1
+	if (Input.is_action_just_pressed("ui_left") or
+	Input.is_action_just_pressed("ui_right")) and actionlist.is_paused() and enemyphase == false:
+		var difference = 1
+		if Input.is_action_just_pressed("ui_left"):
+			difference = -1
+		enemy+=difference
 		if enemy<=-1:
 			enemy=enemies.size()-1
+		elif enemy >= enemies.size():
+			enemy=0
 		$Tween.interpolate_property(selectedEnemy, "position",
-			selectedEnemy.position, Vector2(selectedEnemy.position.x + 100, selectedEnemy.position.y),
+			selectedEnemy.position, Vector2(selectedEnemy.position.x + 300, selectedEnemy.position.y),
 			focusswitchtime, Tween.TRANS_BACK,Tween.EASE_OUT)
 		$Tween.start()
 		
 		selectedEnemy.set("modulate", Color(.2,.6,.6))
+		selectedEnemy.z_index=-2
 		selectedEnemy=enemies[enemy]
+		enemies[enemy].z_index=-1
+		enemies[enemy].set("modulate", Color(1,1,1))
+		
 		$Tween.interpolate_property(selectedEnemy, "position",
-			selectedEnemy.position, Vector2(selectedEnemy.position.x - 100, selectedEnemy.position.y),
+			selectedEnemy.position, Vector2(selectedEnemy.position.x - 300, selectedEnemy.position.y),
 			focusswitchtime, Tween.TRANS_BACK,Tween.EASE_OUT)
 		$Tween.start()
 		
 		robot_busy(focusswitchtime, 0)
-		update()
-
+	ui.update_hp(enemies[enemy].hp, 5)
+	update()
 
 func _draw():
 #	var rect = Rect2(selectedEnemy.position,
 #			Vector2(selectedEnemy.get_texture().get_width(), selectedEnemy.get_texture().get_height()))
 #	draw_rect(rect, Color(.5,.3,.5),true)
-	enemies[enemy].set("modulate", Color(1,1,1))
 	pass
 
-
 func robot_busy(duration, dmg):
-	$Timer.wait_time=duration
-	$Timer.start()
-	actionlist.pause(true)
+	if dmg==0:
+		$Timer.wait_time=duration
+		$Timer.start()
+		actionlist.pause(true)
+		return
+	
 	selectedEnemy.attacked(dmg)
+	
 	if selectedEnemy.hp <= 0:
+		enemies[enemy].set("modulate", Color(.2,.2,.2))
+		enemies[enemy].z_index=-2
 		enemies.remove(enemy)
-		print("enemy size: " + str(enemies.size()))
+#		print("enemy size: " + str(enemies.size()))
 		if(enemies.size() == 0):
 			get_tree().change_scene("res://Scenes/MainMenu.tscn")
 		else:
@@ -84,7 +121,14 @@ func robot_busy(duration, dmg):
 			if enemy<=0:
 				enemy=enemies.size()-1
 			selectedEnemy=enemies[enemy]
-	
+			enemies[enemy].set("modulate", Color(1,1,1))
+			enemies[enemy].z_index=-1
+			robots[0].stopcombo()
+			return
+	else:
+		$Timer.wait_time=duration
+		$Timer.start()
+		actionlist.pause(true)
 	update()
 
 func getActionList(robot, actions):
@@ -98,5 +142,14 @@ func _on_ActionList_action_chosen(action):
 
 
 func _on_Timer_timeout():
-	actionlist.pause(false)
+	robots[0].stopcombo()
+	if turn % 2 == 0:
+		actionlist.pause(false)
+		enemyphase = false
+	else:
+		actionlist.pause(true)
+		enemyphase = true
+		
+	print("turn " + str(turn) + " over!")
+	print(enemyphase)
 	pass
