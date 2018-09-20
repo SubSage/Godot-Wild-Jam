@@ -118,7 +118,7 @@ func processEnemyTurn(delta):
 	isEnemyTurn = false
 	
 	for attackingEnemy in enemies:
-		attackingEnemy.attack(delta)
+		attackingEnemy.takeTurn()
 		
 		#If any of the monsters have not attacked yet (due to timer-related shenanigans probably),
 		#don't change the turn yet

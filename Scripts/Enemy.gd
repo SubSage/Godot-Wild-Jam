@@ -1,6 +1,16 @@
 extends Sprite
 
+#If it's not evolving, kaiju generates an int between 1 and 100.
+#If it's lower than this number, it begins evolving.
+#Decrease this number with each passing evolution.
+var evolutionChance = 20
+
 var hp = 5
+var hpMax = 5
+var isEvolving = false
+var timesEvolved = 0
+var turnsTillEvolution = 2
+
 var gsprite = preload("res://Assets/Art/power_core.png")
 var bullhead = preload("res://Assets/Art/bull_feast/bull head.png")
 
@@ -11,8 +21,8 @@ var hideReticle = false
 
 func _ready():
 	if(randf() < .35):
-		get_node("Node2D/head").set_texture(bullhead)
-		get_node("Node2D/head").scale=Vector2(.6,.6)
+		get_node("BodyParts/head").set_texture(bullhead)
+		get_node("BodyParts/head").scale=Vector2(.6,.6)
 	pass
 
 
@@ -21,6 +31,13 @@ func _process(delta):
 		$Reticle.show()
 	else:
 		$Reticle.hide()
+	
+	if isEvolving:
+		$BodyParts.hide()
+		$Cocoon.show()
+	else:
+		$BodyParts.show()
+		$Cocoon.hide()
 
 
 func attacked(x):
@@ -28,7 +45,7 @@ func attacked(x):
 #	print(hp)
 	if hp <= 0:
 		self.set_texture(gsprite)
-		$Node2D.visible=false
+		$BodyParts.visible=false
 		set("modulate", Color(.3,.3,.3))
 #		queue_free()
 	else:
@@ -37,7 +54,31 @@ func attacked(x):
 		
 
 
-func attack(delta):
-	print("Monster attacked!")
+func takeTurn():
 	hasAttacked = true
+	
+	if isEvolving:
+		print("Monster is busy evolving!")
+		turnsTillEvolution -= 1
+		
+		if turnsTillEvolution == 0:
+			finish_evolving()
+			isEvolving = false
+	else:
+		var whichAction = (randi() % 100) + 1
+		
+		if whichAction <= evolutionChance:
+			print("Monster has entered a coccoon!")
+			isEvolving = true
+		else:
+			print("Monster attacks!")
+			attack()
 
+
+func attack():
+	pass
+
+
+func finish_evolving():
+	print("Monster emerges in a more powerful form!")
+	hp = hpMax
