@@ -91,9 +91,7 @@ func processPlayerTurn(delta):
 		$Tween.start()
 		
 		selectedEnemy.set("modulate", Color(.2,.6,.6))
-		selectedEnemy.z_index=-2
 		selectedEnemy=enemies[enemy]
-		enemies[enemy].z_index=-1
 		enemies[enemy].set("modulate", Color(1,1,1))
 		
 		$Tween.interpolate_property(selectedEnemy, "position",
@@ -140,7 +138,6 @@ func robot_busy(duration, dmg):
 	
 	if selectedEnemy.hp <= 0:
 		enemies[enemy].set("modulate", Color(.2,.2,.2))
-		enemies[enemy].z_index=-2
 		enemies.remove(enemy)
 #		print("enemy size: " + str(enemies.size()))
 		if(enemies.size() == 0):
@@ -151,7 +148,6 @@ func robot_busy(duration, dmg):
 				enemy=enemies.size()-1
 			selectedEnemy=enemies[enemy]
 			enemies[enemy].set("modulate", Color(1,1,1))
-			enemies[enemy].z_index=-1
 			robots[0].stopcombo()
 			return
 	else:
