@@ -16,7 +16,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[node name="Enemy" type="Sprite"]
+[node name="Enemy" type="Sprite" index="0"]
 
 modulate = Color( 0.488281, 0.469208, 0.469208, 1 )
 script = ExtResource( 1 )
@@ -45,47 +45,49 @@ playback/active = false
 playback/repeat = false
 playback/speed = 1.0
 
-[node name="tale" type="Sprite" parent="." index="2"]
+[node name="Node2D" type="Node2D" parent="." index="2"]
+
+[node name="tale" type="Sprite" parent="Node2D" index="0"]
 
 position = Vector2( 273.886, -106.757 )
 texture = ExtResource( 2 )
 
-[node name="foot left" type="Sprite" parent="." index="3"]
+[node name="foot left" type="Sprite" parent="Node2D" index="1"]
 
 position = Vector2( -152.93, 182.018 )
 texture = ExtResource( 3 )
 
-[node name="biceps left" type="Sprite" parent="." index="4"]
+[node name="biceps left" type="Sprite" parent="Node2D" index="2"]
 
 position = Vector2( -202.117, -214.651 )
 texture = ExtResource( 4 )
 
-[node name="body" type="Sprite" parent="." index="5"]
+[node name="body" type="Sprite" parent="Node2D" index="3"]
 
 position = Vector2( -16.4758, -135.317 )
 texture = ExtResource( 5 )
 
-[node name="biceps right" type="Sprite" parent="." index="6"]
+[node name="biceps right" type="Sprite" parent="Node2D" index="4"]
 
 position = Vector2( 175.512, -244.798 )
 texture = ExtResource( 6 )
 
-[node name="hand left" type="Sprite" parent="." index="7"]
+[node name="hand left" type="Sprite" parent="Node2D" index="5"]
 
 position = Vector2( -324.291, -119.451 )
 texture = ExtResource( 7 )
 
-[node name="hand right" type="Sprite" parent="." index="8"]
+[node name="hand right" type="Sprite" parent="Node2D" index="6"]
 
 position = Vector2( 208.832, -100.411 )
 texture = ExtResource( 8 )
 
-[node name="head" type="Sprite" parent="." index="9"]
+[node name="head" type="Sprite" parent="Node2D" index="7"]
 
 position = Vector2( -51.3827, -441.546 )
 texture = ExtResource( 9 )
 
-[node name="foot right" type="Sprite" parent="." index="10"]
+[node name="foot right" type="Sprite" parent="Node2D" index="8"]
 
 position = Vector2( 139.018, 180.431 )
 texture = ExtResource( 10 )

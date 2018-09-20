@@ -11,7 +11,7 @@ Label/constants/line_spacing = 3
 Label/constants/shadow_as_outline = 6
 Label/constants/shadow_offset_x = 2
 Label/constants/shadow_offset_y = 2
-Label/fonts/font = null
+Label/fonts/font = ExtResource( 1 )
 Label/styles/normal = null
 _sections_unfolded = [ "Label", "Label/colors", "Label/constants", "Label/fonts", "Label/styles" ]
 

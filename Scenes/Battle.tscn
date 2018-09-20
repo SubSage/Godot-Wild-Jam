@@ -41,6 +41,7 @@ _sections_unfolded = [ "playback" ]
 
 [node name="Sprite" type="Sprite" parent="." index="4"]
 
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 771.428, -349.423 )
 scale = Vector2( 1.83416, 1 )
@@ -50,6 +51,7 @@ _sections_unfolded = [ "Visibility", "Z Index" ]
 
 [node name="Sprite2" type="Sprite" parent="." index="5"]
 
+visible = false
 modulate = Color( 0, 0, 0, 1 )
 use_parent_material = true
 position = Vector2( 827.218, 1415.31 )

@@ -5,11 +5,13 @@ var enemies = []
 var robots = []
 var Robot = preload("res://Scenes/Robot.tscn")
 var Enemy = preload("res://Scenes/Enemy.tscn")
+var UI = preload("res://GUI/Enemy/EnemyStats.tscn")
 var selectedRobot
 var selectedEnemy
 var enemy=0
 var rect = Rect2(0,0,10,10)
 var focusswitchtime = .2
+var ui
 onready var actionlist = $ActionList
 
 func _ready():
@@ -47,10 +49,13 @@ func _ready():
 #		add_child(en2)
 #		enemies.append(en2)
 #		en2.z_index=-2
-	e.z_index=-2
-	ee.z_index=-2
+#	e.z_index=-2
+#	ee.z_index=-2
 	selectedEnemy= enemies[enemy]
 	enemies[enemy].set("modulate", Color(1,1,1))
+	ui = UI.instance()
+	add_child(ui)
+	ui.rect_position=Vector2(1200, 950)
 	
 func _process(delta):
 	if Input.is_action_just_pressed("ui_quit"):
@@ -75,8 +80,8 @@ func _process(delta):
 		$Tween.start()
 		
 		robot_busy(focusswitchtime, 0)
-		update()
-
+	ui.update_hp(enemies[enemy].hp, 5)
+	update()
 
 func _draw():
 #	var rect = Rect2(selectedEnemy.position,
