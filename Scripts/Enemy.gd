@@ -6,18 +6,22 @@ var bullhead = preload("res://Assets/Art/bull_feast/bull head.png")
 
 var hasAttacked = false
 
+var isSelected = false
+var hideReticle = false
+
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
 	if(randf() < .35):
 		get_node("Node2D/head").set_texture(bullhead)
 		get_node("Node2D/head").scale=Vector2(.6,.6)
 	pass
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+
+func _process(delta):
+	if isSelected && !hideReticle:
+		$Reticle.show()
+	else:
+		$Reticle.hide()
+
 
 func attacked(x):
 	hp -= x
@@ -32,6 +36,8 @@ func attacked(x):
 		$Tween.start()
 		
 
+
 func attack(delta):
 	print("Monster attacked!")
 	hasAttacked = true
+

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Art/godra 2/tale.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Assets/Art/godra 2/hand right.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Art/godra 2/head.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Art/godra 2/foot right.png" type="Texture" id=10]
+[ext_resource path="res://GUI/reticle_placeholder.png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -91,5 +92,10 @@ texture = ExtResource( 9 )
 
 position = Vector2( 139.018, 180.431 )
 texture = ExtResource( 10 )
+
+[node name="Reticle" type="Sprite" parent="." index="3"]
+
+position = Vector2( -55.7754, -157.803 )
+texture = ExtResource( 11 )
 
 

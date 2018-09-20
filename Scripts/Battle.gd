@@ -55,8 +55,10 @@ func _ready():
 	ee.z_index=-2
 	eee.z_index=-2
 	eeee.z_index=-2
-	selectedEnemy= enemies[enemy]
-	enemies[enemy].set("modulate", Color(1,1,1))
+	
+	selectedEnemy = enemies[enemy]
+	selectedEnemy.isSelected = true
+	selectedEnemy.set("modulate", Color(1,1,1))
 	ui = UI.instance()
 	add_child(ui)
 	ui.rect_position=Vector2(1200, 950)
@@ -67,16 +69,17 @@ func _process(delta):
 		get_tree().change_scene("res://Scenes/MainMenu.tscn")
 	
 	if isEnemyTurn:
+		selectedEnemy.hideReticle = true
 		$ActionList.pause(true)
 		processEnemyTurn(delta)
 	else:
+		selectedEnemy.hideReticle = false
 		$ActionList.pause(false)
 		processPlayerTurn(delta)
 
 
 func processPlayerTurn(delta):
-	if (Input.is_action_just_pressed("ui_left") or
-	Input.is_action_just_pressed("ui_right")) and actionlist.is_paused():
+	if (Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right")) and actionlist.is_paused():
 		var difference = 1
 		if Input.is_action_just_pressed("ui_left"):
 			difference = -1
@@ -85,13 +88,20 @@ func processPlayerTurn(delta):
 			enemy=enemies.size()-1
 		elif enemy >= enemies.size():
 			enemy=0
+			
+		#The previously-selected enemy
+		selectedEnemy.isSelected = false
+		
 		$Tween.interpolate_property(selectedEnemy, "position",
 			selectedEnemy.position, Vector2(selectedEnemy.position.x + 300, selectedEnemy.position.y),
 			focusswitchtime, Tween.TRANS_BACK,Tween.EASE_OUT)
 		$Tween.start()
 		
 		selectedEnemy.set("modulate", Color(.2,.6,.6))
+		
+		#The now-selected enemy
 		selectedEnemy=enemies[enemy]
+		selectedEnemy.isSelected = true
 		enemies[enemy].set("modulate", Color(1,1,1))
 		
 		$Tween.interpolate_property(selectedEnemy, "position",
@@ -179,3 +189,4 @@ func _on_Timer_timeout():
 	print("turn " + str(turn) + " over!")
 	print(isEnemyTurn)
 	pass
+
