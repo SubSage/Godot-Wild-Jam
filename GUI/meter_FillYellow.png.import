@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/edgeFrame.png-ee3370d9080063a49e8960d7746fcb4d.stex"
+path="res://.import/meter_FillYellow.png-d5f3c3234f4f7cd1eb2850778841c1f5.stex"
 
 [deps]
 
-source_file="res://Assets/Cutscenes/edgeFrame.png"
-dest_files=[ "res://.import/edgeFrame.png-ee3370d9080063a49e8960d7746fcb4d.stex" ]
+source_file="res://GUI/meter_FillYellow.png"
+dest_files=[ "res://.import/meter_FillYellow.png-d5f3c3234f4f7cd1eb2850778841c1f5.stex" ]
 
 [params]
 

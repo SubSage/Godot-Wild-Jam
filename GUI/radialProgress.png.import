@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/txtBubble_jazzy.png-10d22d348269a064080888e6376f9f61.stex"
+path="res://.import/radialProgress.png-58ebb6ec9ae852f6844e99f850cf91e2.stex"
 
 [deps]
 
-source_file="res://Assets/Cutscenes/txtBubble_jazzy.png"
-dest_files=[ "res://.import/txtBubble_jazzy.png-10d22d348269a064080888e6376f9f61.stex" ]
+source_file="res://GUI/radialProgress.png"
+dest_files=[ "res://.import/radialProgress.png-58ebb6ec9ae852f6844e99f850cf91e2.stex" ]
 
 [params]
 
