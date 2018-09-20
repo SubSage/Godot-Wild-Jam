@@ -15,12 +15,12 @@ func _process(delta):
 	pass
 
 func _on_ItemList_item_activated(index):
-	match 0:
-		0:
+	match $ItemList.get_item_text(index):
+		"New Game":
 			_option_new_game()
-		1:
+		"Continuq":
 			_option_continue_game()
-		2:
+		"Quit":
 			_option_quit_game()
 
 func _option_new_game():

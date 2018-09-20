@@ -3,9 +3,9 @@ extends Sprite
 var health = 100
 var actions = {
 	"Sword Attack": "attack_normal",
-	"Special Attack": "attack_special",
-	"Defend": "defend",
-	"Wait": "wait"
+	"Special Attack": "attack_special"
+#	"Defend": "defend",
+#	"Wait": "wait"
 }
 
 var movedata=[
@@ -18,18 +18,18 @@ signal busy(duration, dmg)
 
 func _ready():
 #	set("visible", false)
-	get_node("Area2D/CollisionShape2D").shape.set("extents", Vector2(get_texture().get_width()/2,get_texture().get_height()/2))
+	get_node("Sprite/Area2D/CollisionShape2D").shape.set("extents", Vector2(get_node("Sprite").get_texture().get_width()/2, get_node("Sprite").get_texture().get_height()/2))
 #	$AnimationPlayer.play("idle")
 	
 func _process(delta):
 	if (not timer.is_stopped()) and (abs(movedata[0].length - timer.time_left - movedata[0].timing) <=   movedata[0].precision):
-		set("modulate", Color(.8,.2,.2))
+		set("modulate", Color(.2,.2,.8))
 	else:
 		set("modulate", Color(1,1,1))
 	update()
 
 func on_click():
-	emit_signal("on_click", self, actions)
+#	emit_signal("on_click", self, actions)
 	if (not timer.is_stopped()) and (abs(movedata[0].length - timer.time_left - movedata[0].timing) <=   movedata[0].precision):
 #		print("you did it!"+ str(timer.time_left) )
 		get_node("Particles2D").restart()

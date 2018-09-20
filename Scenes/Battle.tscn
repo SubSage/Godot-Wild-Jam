@@ -5,12 +5,13 @@
 [ext_resource path="res://Assets/Audio/Godot Game jam Combat theme.wav" type="AudioStream" id=3]
 [ext_resource path="res://Assets/Art/splash_screen.png" type="Texture" id=4]
 
-[node name="Battle" type="Node2D"]
+[node name="Battle" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
 [node name="ActionList" parent="." index="0" instance=ExtResource( 2 )]
 
+scale = Vector2( 2, 2 )
 _sections_unfolded = [ "Pause", "Transform" ]
 
 [node name="Timer" type="Timer" parent="." index="1"]

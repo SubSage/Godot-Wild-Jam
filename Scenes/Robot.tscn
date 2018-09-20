@@ -4,11 +4,6 @@
 [ext_resource path="res://Scripts/Robot.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Art/better icon dummy.png" type="Texture" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
-extents = Vector2( 32, 32 )
-
 [sub_resource type="ParticlesMaterial" id=2]
 
 render_priority = 0
@@ -80,36 +75,26 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.40625, 0.192017, 0.192017, 1 ), Color( 0.199219, 0.157974, 0.157974, 1 ) ]
 }
 
-[node name="Robot" type="Sprite" index="0"]
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 32 )
+
+[node name="Robot" type="Sprite"]
 
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 _sections_unfolded = [ "Offset", "Transform", "Visibility", "Z Index" ]
 
-[node name="Area2D" type="Area2D" parent="." index="0"]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-
-shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="Timer" type="Timer" parent="." index="1"]
+[node name="Timer" type="Timer" parent="." index="0"]
 
 process_mode = 1
 wait_time = 1.0
 one_shot = true
 autostart = false
 
-[node name="Tween" type="Tween" parent="." index="2"]
+[node name="Tween" type="Tween" parent="." index="1"]
 
 repeat = false
 playback_process_mode = 1
@@ -119,7 +104,7 @@ playback/repeat = false
 playback/speed = 1.0
 _sections_unfolded = [ "playback" ]
 
-[node name="Particles2D" type="Particles2D" parent="." index="3"]
+[node name="Particles2D" type="Particles2D" parent="." index="2"]
 
 emitting = false
 amount = 25
@@ -141,7 +126,7 @@ h_frames = 1
 v_frames = 1
 _sections_unfolded = [ "Process Material", "Time" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 
 root_node = NodePath("..")
 autoplay = ""
@@ -151,6 +136,34 @@ playback_speed = 1.0
 anims/idle = SubResource( 3 )
 blend_times = [  ]
 
-[connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]
+[node name="Sprite" type="Sprite" parent="." index="4"]
+
+position = Vector2( 458.928, -250.511 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="Area2D" type="Area2D" parent="Sprite" index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Area2D" index="0"]
+
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[connection signal="input_event" from="Sprite/Area2D" to="." method="_on_Area2D_input_event"]
 
 
