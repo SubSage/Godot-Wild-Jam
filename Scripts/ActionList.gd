@@ -15,6 +15,7 @@ func _ready():
 	
 	replace_options(null)
 
+
 func _process(delta):	
 	if options == null:
 		self.hide()
@@ -35,6 +36,7 @@ func _update_options():
 	$ItemList.grab_focus()
 	$ItemList.select(0)
 
+
 func replace_options(new_options):
 	options = new_options
 	_update_options()
@@ -44,18 +46,21 @@ func _on_ItemList_item_activated(index):
 	if $ItemList.is_item_selectable(index):
 		emit_signal("action_chosen", options[$ItemList.get_item_text(index)])
 
+
 func pause(pause):
 	for item in $ItemList.get_item_count():
 		$ItemList.set_item_disabled(item, pause)
 		$ItemList.set_item_selectable(item, not pause)
+	
 	if pause:
 		$ItemList.release_focus()
 	else:
 		$ItemList.grab_focus()
-		pass
+
 
 func is_paused():
 	return $ItemList.has_focus()
+
 
 func _on_ItemList_item_selected(index):
 	if $ItemList.is_item_selectable(index):

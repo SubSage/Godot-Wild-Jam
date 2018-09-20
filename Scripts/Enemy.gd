@@ -4,6 +4,8 @@ var hp = 5
 var gsprite = preload("res://Assets/Art/power_core.png")
 var bullhead = preload("res://Assets/Art/bull_feast/bull head.png")
 
+var hasAttacked = false
+
 func _ready():
 	# Called when the node is added to the scene for the first time.
 	# Initialization here
@@ -29,3 +31,7 @@ func attacked(x):
 		$Tween.interpolate_property(self, "modulate", Color(.3,.3,.3), Color(1,1,1), 1,Tween.TRANS_BACK,Tween.EASE_IN)
 		$Tween.start()
 		
+
+func attack(delta):
+	print("Monster attacked!")
+	hasAttacked = true

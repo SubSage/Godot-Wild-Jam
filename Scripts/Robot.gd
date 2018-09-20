@@ -10,17 +10,21 @@ var actions = {
 
 var movedata=[
 	{name= "attack_normal",hits=1, length=2, timing=2, precision = .2},
-	{name= "special_normal",hits=1, length=2, timing=2, precision = .2}]
+	{name= "special_normal",hits=1, length=2, timing=2, precision = .2}
+]
+
 
 onready var timer = $Timer
 signal on_click(robot, actions)
 signal busy(duration, dmg)
+
 
 func _ready():
 #	set("visible", false)
 	$Sprite.visible=false
 	get_node("Sprite/Area2D/CollisionShape2D").shape.set("extents", Vector2(get_node("Sprite").get_texture().get_width()/2, get_node("Sprite").get_texture().get_height()/2))
 #	$AnimationPlayer.play("idle")
+	
 	
 func _process(delta):
 	$Sprite.rotate(.5*delta)
@@ -30,6 +34,7 @@ func _process(delta):
 	else:
 		set("modulate", Color(1,1,1))
 	update()
+
 
 func on_click():
 #	emit_signal("on_click", self, actions)
@@ -51,10 +56,12 @@ func actionmove(var index, var combo = 0):
 		get_node("Tween").start()
 		emit_signal("busy", movedata[0].length, 1)
 
+
 func stopcombo():
 	timer.stop()
 	$Tween.stop_all()
 	$Sprite.visible=false
+
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():

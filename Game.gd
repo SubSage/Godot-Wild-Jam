@@ -24,16 +24,20 @@ func _on_ItemList_item_activated(index):
 		"Quit":
 			_option_quit_game()
 
+
 func _option_new_game():
 	get_tree().change_scene("res://Scenes/MainMenu.tscn")
+
 
 func _option_continue_game():
 	#TODO: Add game-loading code here. The call to _option_new_game should be kept as
 	#a last-resort if the player choses Continue without having a save file
 	_option_new_game()
 
+
 func _option_quit_game():
 	get_tree().quit()
+
 
 func ui_move_sound(index):
 	$AudioStreamPlayer.play()

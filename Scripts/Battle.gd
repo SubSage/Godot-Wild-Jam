@@ -12,8 +12,9 @@ var enemy=0
 var rect = Rect2(0,0,10,10)
 var focusswitchtime = .2
 var ui
-var enemyphase = false
+var isEnemyTurn = false
 onready var actionlist = $ActionList
+
 
 func _ready():
 	$AudioStreamPlayer.play()
@@ -59,13 +60,23 @@ func _ready():
 	ui = UI.instance()
 	add_child(ui)
 	ui.rect_position=Vector2(1200, 950)
-	
+
+
 func _process(delta):
 	if Input.is_action_just_pressed("ui_quit"):
 		get_tree().change_scene("res://Scenes/MainMenu.tscn")
-		
+	
+	if isEnemyTurn:
+		$ActionList.pause(true)
+		processEnemyTurn(delta)
+	else:
+		$ActionList.pause(false)
+		processPlayerTurn(delta)
+
+
+func processPlayerTurn(delta):
 	if (Input.is_action_just_pressed("ui_left") or
-	Input.is_action_just_pressed("ui_right")) and actionlist.is_paused() and enemyphase == false:
+	Input.is_action_just_pressed("ui_right")) and actionlist.is_paused():
 		var difference = 1
 		if Input.is_action_just_pressed("ui_left"):
 			difference = -1
@@ -94,11 +105,29 @@ func _process(delta):
 	ui.update_hp(enemies[enemy].hp, 5)
 	update()
 
+
+func processEnemyTurn(delta):
+	isEnemyTurn = false
+	
+	for attackingEnemy in enemies:
+		attackingEnemy.attack(delta)
+		
+		#If any of the monsters have not attacked yet (due to timer-related shenanigans probably),
+		#don't change the turn yet
+		if attackingEnemy.hasAttacked == false:
+			isEnemyTurn = true
+	
+	if isEnemyTurn == false:
+		for resettingEnemy in enemies:
+			resettingEnemy.hasAttacked = false
+
+
 func _draw():
 #	var rect = Rect2(selectedEnemy.position,
 #			Vector2(selectedEnemy.get_texture().get_width(), selectedEnemy.get_texture().get_height()))
 #	draw_rect(rect, Color(.5,.3,.5),true)
 	pass
+
 
 func robot_busy(duration, dmg):
 	if dmg==0:
@@ -131,6 +160,7 @@ func robot_busy(duration, dmg):
 		actionlist.pause(true)
 	update()
 
+
 func getActionList(robot, actions):
 	selectedRobot=robot
 	actionlist.replace_options(actions)
@@ -145,11 +175,11 @@ func _on_Timer_timeout():
 	robots[0].stopcombo()
 	if turn % 2 == 0:
 		actionlist.pause(false)
-		enemyphase = false
+		isEnemyTurn = false
 	else:
 		actionlist.pause(true)
-		enemyphase = true
+		isEnemyTurn = true
 		
 	print("turn " + str(turn) + " over!")
-	print(enemyphase)
+	print(isEnemyTurn)
 	pass

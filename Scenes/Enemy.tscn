@@ -16,7 +16,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[node name="Enemy" type="Sprite"]
+[node name="Enemy" type="Sprite" index="0"]
 
 modulate = Color( 0.488281, 0.469208, 0.469208, 1 )
 script = ExtResource( 1 )
