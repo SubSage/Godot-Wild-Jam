@@ -4,11 +4,7 @@
 [ext_resource path="res://Scenes/ActionList.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Audio/Godot Game jam Combat theme.wav" type="AudioStream" id=3]
 
-<<<<<<< HEAD
-[node name="Battle" type="Node" index="0"]
-=======
 [node name="Battle" type="Node2D" index="0"]
->>>>>>> origin/sage
 
 script = ExtResource( 1 )
 
@@ -17,7 +13,6 @@ script = ExtResource( 1 )
 margin_top = 773.0
 margin_bottom = 773.0
 _sections_unfolded = [ "Anchor", "Margin", "Pause", "Theme", "Transform" ]
-columns = 1
 
 [node name="Timer" type="Timer" parent="." index="1"]
 
