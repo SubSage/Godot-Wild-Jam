@@ -148,9 +148,9 @@ func _on_Timer_timeout():
 		actionlist.pause(false)
 		enemyphase = false
 	else:
-		pass
-	actionlist.pause(false)
-	enemyphase = false
+		actionlist.pause(true)
+		enemyphase = true
+		
 	print("turn " + str(turn) + " over!")
 	print(enemyphase)
 	pass
