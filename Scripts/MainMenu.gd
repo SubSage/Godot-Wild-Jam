@@ -1,6 +1,8 @@
 extends Node
 
 func _ready():
+	$ItemList.grab_focus()
+	$ItemList.select(0)
 	pass
 
 func _process(delta):
@@ -31,3 +33,7 @@ func _option_save():
 func _option_quit():
 	_option_save()
 	get_tree().quit()
+
+func _on_ItemList_item_selected(index):
+	$AudioStreamPlayer.play()
+	pass # replace with function body

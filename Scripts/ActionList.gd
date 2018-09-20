@@ -33,6 +33,7 @@ func _update_options():
 		$ItemList.add_item(key, null, true)
 		
 	$ItemList.grab_focus()
+	$ItemList.select(0)
 
 func replace_options(new_options):
 	options = new_options
@@ -47,3 +48,16 @@ func pause(pause):
 	for item in $ItemList.get_item_count():
 		$ItemList.set_item_disabled(item, pause)
 		$ItemList.set_item_selectable(item, not pause)
+	if pause:
+		$ItemList.release_focus()
+	else:
+		$ItemList.grab_focus()
+		pass
+
+func is_paused():
+	return $ItemList.has_focus()
+
+func _on_ItemList_item_selected(index):
+	if $ItemList.is_item_selectable(index):
+		$clicksound.play()
+	pass # replace with function body
