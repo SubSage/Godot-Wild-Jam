@@ -1,37 +1,31 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Upgrade.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Themes/ItemList.theme" type="Theme" id=2]
+[ext_resource path="res://Scenes/ActionList.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Audio/mus_upgrade.wav" type="AudioStream" id=3]
 
-[node name="Node" type="Node"]
+[node name="Node" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
-[node name="ItemList" type="ItemList" parent="." index="0"]
+[node name="ActionList" parent="." index="0" instance=ExtResource( 2 )]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 89.0
-margin_top = 57.0
-margin_right = 473.0
-margin_bottom = 173.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = true
-focus_mode = 2
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 2
-size_flags_vertical = 2
-theme = ExtResource( 2 )
-items = [ "An upgrade", null, false, "And another", null, false, "More upgrade", null, false, "Item whatever", null, false, "Item 4", null, false, "Item 5", null, false ]
-select_mode = 0
-allow_reselect = false
-max_columns = 2
-same_column_width = true
-icon_mode = 1
-fixed_icon_size = Vector2( 0, 0 )
-_sections_unfolded = [ "Anchor", "Columns", "Focus", "Grow Direction", "Hint", "Icon", "Margin", "Mouse", "Rect", "Size Flags", "Theme" ]
+margin_left = 79.0
+margin_top = 48.0
+margin_right = 79.0
+margin_bottom = 48.0
+_sections_unfolded = [ "Anchor", "Grow Direction", "Margin", "Theme", "Transform" ]
+columns = 2
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." index="1"]
+
+stream = ExtResource( 3 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = true
+mix_target = 0
+bus = "Master"
+
+[connection signal="action_chosen" from="ActionList" to="." method="_on_ActionList_action_chosen"]
 
 

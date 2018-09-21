@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/GrowlLow_1.wav-4c7b962b531e4d95c5532b5140d898df.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/kaiju/GrowlLow_1.wav"
+dest_files=[ "res://.import/GrowlLow_1.wav-4c7b962b531e4d95c5532b5140d898df.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

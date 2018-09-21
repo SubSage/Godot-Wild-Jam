@@ -22,6 +22,7 @@ func _on_ItemList_item_activated(index):
 			_option_quit()
 
 func _option_start_battle():
+	print("Start battle selected")
 	get_tree().change_scene("res://Scenes/Battle.tscn")
 
 func _option_evolve():

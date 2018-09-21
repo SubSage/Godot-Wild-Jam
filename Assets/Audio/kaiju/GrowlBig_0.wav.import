@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/GrowlBig_0.wav-de9f5547f33b9cf622a08423eda658dd.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/kaiju/GrowlBig_0.wav"
+dest_files=[ "res://.import/GrowlBig_0.wav-de9f5547f33b9cf622a08423eda658dd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
