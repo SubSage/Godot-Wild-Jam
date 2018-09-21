@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/KaijuGrowl_1.wav-58206b9b94bb73f620f7ecdbf2c52a19.sample"
+path="res://.import/mus_combat.wav-1c21d0c375345bf1bb42d902037fc6e5.sample"
 
 [deps]
 
-source_file="res://Assets/Audio/KaijuGrowl_1.wav"
-dest_files=[ "res://.import/KaijuGrowl_1.wav-58206b9b94bb73f620f7ecdbf2c52a19.sample" ]
+source_file="res://Assets/Audio/mus_combat.wav"
+dest_files=[ "res://.import/mus_combat.wav-1c21d0c375345bf1bb42d902037fc6e5.sample" ]
 
 [params]
 

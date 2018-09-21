@@ -19,7 +19,6 @@ var attackingEnemy = 0
 
 
 func _ready():
-	$AudioStreamPlayer.play()
 	var r = Robot.instance()
 	r.connect("on_click", self, "getActionList")
 	r.connect("busy", self, "robot_busy")
@@ -80,6 +79,9 @@ func _process(delta):
 	else:
 		selectedEnemy.hideReticle = false
 		processPlayerTurn(delta)
+		
+		for enemy in enemies:
+			enemy.hasAttacked = false
 
 
 func processPlayerTurn(delta):

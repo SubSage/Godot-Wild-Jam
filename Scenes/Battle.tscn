@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Battle.gd" type="Script" id=1]
 [ext_resource path="res://GUI/battleUI_Reference.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/ActionList.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/Audio/Godot Game jam Combat theme.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Audio/mus_combat.wav" type="AudioStream" id=4]
 [ext_resource path="res://GUI/Enemy/EnemyStats.tscn" type="PackedScene" id=5]
 [ext_resource path="res://GUI/Enemy/PlayerStats.tscn" type="PackedScene" id=6]
 
@@ -49,7 +49,7 @@ autostart = false
 stream = ExtResource( 4 )
 volume_db = -10.0
 pitch_scale = 1.0
-autoplay = false
+autoplay = true
 mix_target = 0
 bus = "Master"
 

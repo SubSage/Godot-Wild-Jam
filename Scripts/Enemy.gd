@@ -20,6 +20,31 @@ var turnsTillEvolution = 2
 var gsprite = preload("res://Assets/Art/power_core.png")
 var bullhead = preload("res://Assets/Art/bull_feast/bull head.png")
 
+
+#Sound arrays
+var ambientSounds = [
+	preload("res://Assets/Audio/kaiju/Growl_0.wav"),
+	preload("res://Assets/Audio/kaiju/Growl_1.wav"),
+	preload("res://Assets/Audio/kaiju/Growl_2.wav"),
+	preload("res://Assets/Audio/kaiju/Growl_3.wav"),
+	preload("res://Assets/Audio/kaiju/Growl_4.wav"),
+	preload("res://Assets/Audio/kaiju/GrowlBig_0.wav"),
+	preload("res://Assets/Audio/kaiju/GrowlBig_1.wav"),
+	preload("res://Assets/Audio/kaiju/GrowlLow_0.wav"),
+	preload("res://Assets/Audio/kaiju/GrowlLow_1.wav")
+]
+
+
+var cocoonBreakingSounds = [
+	preload("res://Assets/Audio/kaiju/CocoonExplode_0.wav")
+]
+
+
+var hurtSounds = [
+
+]
+
+
 var hasAttacked = false
 
 var isSelected = false
@@ -93,8 +118,17 @@ func attack(delta, robots):
 	
 	#Timed hits stuff goes here
 	selectedRobot.currentHealth -= int(attackStrength + rand_range(-2, 2))
+	
+	play_sound(ambientSounds)
 
 
 func finish_evolving():
 	print("Monster emerges in a more powerful form!")
 	currentHealth = healthMaximum
+	play_sound(cocoonBreakingSounds)
+
+
+func play_sound(soundArray):
+	var soundNumber = rand_range(0, soundArray.size())
+	$AmbientSound.stream = soundArray[soundNumber]
+	$AmbientSound.play(0)
