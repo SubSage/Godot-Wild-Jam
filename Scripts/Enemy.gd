@@ -1,5 +1,6 @@
 extends Sprite
 
+
 var monsterName = "Godra"
 
 #If it's not evolving, kaiju generates an int between 1 and 100.

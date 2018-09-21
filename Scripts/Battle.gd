@@ -10,8 +10,12 @@ var selectedEnemy
 var enemy=0
 var rect = Rect2(0,0,10,10)
 var focusswitchtime = .2
-var isEnemyTurn = false
 onready var actionlist = $ActionList
+
+
+var isEnemyTurn = false
+var nextMonsterCanAttack = true
+var attackingEnemy = 0
 
 
 func _ready():
@@ -114,22 +118,26 @@ func processPlayerTurn(delta):
 
 
 func processEnemyTurn(delta):
-	isEnemyTurn = false
+	if nextMonsterCanAttack == false:
+		return
 	
-	for attackingEnemy in enemies:
-		attackingEnemy.takeTurn()
-		
-		#If any of the monsters have not attacked yet (due to timer-related shenanigans probably),
-		#don't change the turn yet
-		if attackingEnemy.hasAttacked == false:
-			isEnemyTurn = true
+	if !enemies[attackingEnemy].hasAttacked:
+		enemies[attackingEnemy].takeTurn()
 	
-	if isEnemyTurn == false:
-		for resettingEnemy in enemies:
-			resettingEnemy.hasAttacked = false
-		
+	attackingEnemy += 1
+	
+	if attackingEnemy >= enemies.size():
+		isEnemyTurn = false
+		attackingEnemy = 0
+		nextMonsterCanAttack = true
 		$ActionList.pause(false)
+	else:
+		nextMonsterCanAttack = false
+		$MonsterTimer.start()
 
+
+func _on_MonsterTimer_timeout():
+	nextMonsterCanAttack = true
 
 func _draw():
 #	var rect = Rect2(selectedEnemy.position,

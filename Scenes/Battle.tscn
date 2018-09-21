@@ -7,7 +7,7 @@
 [ext_resource path="res://GUI/Enemy/EnemyStats.tscn" type="PackedScene" id=5]
 [ext_resource path="res://GUI/Enemy/PlayerStats.tscn" type="PackedScene" id=6]
 
-[node name="Battle" type="Node2D"]
+[node name="Battle" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -78,8 +78,17 @@ margin_top = 834.0
 margin_right = 566.0
 margin_bottom = 1013.0
 
+[node name="MonsterTimer" type="Timer" parent="." index="7"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
 [connection signal="action_chosen" from="ActionList" to="." method="_on_ActionList_action_chosen"]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[connection signal="timeout" from="MonsterTimer" to="." method="_on_MonsterTimer_timeout"]
 
 
