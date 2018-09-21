@@ -79,9 +79,6 @@ func _process(delta):
 	else:
 		selectedEnemy.hideReticle = false
 		processPlayerTurn(delta)
-		
-		for enemy in enemies:
-			enemy.hasAttacked = false
 
 
 func processPlayerTurn(delta):
@@ -130,8 +127,13 @@ func processEnemyTurn(delta, robots):
 	
 	if attackingEnemy >= enemies.size():
 		isEnemyTurn = false
+		
+		for enemy in enemies:
+			enemy.hasAttacked = false
+		
 		attackingEnemy = 0
 		nextMonsterCanAttack = true
+		
 		$ActionList.pause(false)
 		$MonsterTimer.stop()
 	else:

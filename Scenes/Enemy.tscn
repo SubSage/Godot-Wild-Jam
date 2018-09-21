@@ -11,7 +11,7 @@
 [ext_resource path="res://Assets/Art/godra 2/head.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Art/godra 2/foot right.png" type="Texture" id=10]
 [ext_resource path="res://GUI/reticle_placeholder.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Art/better icon dummy.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Art/cocoon.png" type="Texture" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -101,11 +101,10 @@ texture = ExtResource( 11 )
 
 [node name="Cocoon" type="Sprite" parent="." index="4"]
 
-visible = false
 position = Vector2( -64.266, -161.773 )
-scale = Vector2( 15, 15 )
+scale = Vector2( 1.75, 1.75 )
 texture = ExtResource( 12 )
-_sections_unfolded = [ "Visibility" ]
+_sections_unfolded = [ "Transform", "Visibility" ]
 
 [node name="AmbientSound" type="AudioStreamPlayer" parent="." index="5"]
 
