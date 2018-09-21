@@ -14,7 +14,7 @@ var actions = {
 }
 
 var movedata=[
-	{name= "attack_normal",hits=1, length=2, timing=2, precision = .6},
+	{name= "attack_normal",hits=1, length=2, timing=2, precision = .2},
 	{name= "special_normal",hits=1, length=2, timing=2, precision = .2}
 ]
 

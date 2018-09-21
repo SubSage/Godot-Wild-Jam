@@ -59,7 +59,7 @@ func attacked(x):
 		
 
 
-func takeTurn():
+func takeTurn(delta, robots):
 	hasAttacked = true
 	
 	if isEvolving:
@@ -77,11 +77,15 @@ func takeTurn():
 			isEvolving = true
 		else:
 			print("Monster attacks!")
-			attack()
+			attack(delta, robots)
 
 
-func attack():
-	pass
+func attack(delta, robots):
+	#Select which robot to hit
+	var robotTarget = 0
+	
+	if robots.size() != 1:
+		pass
 
 
 func finish_evolving():

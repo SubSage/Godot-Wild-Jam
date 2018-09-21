@@ -76,7 +76,7 @@ func _process(delta):
 	if isEnemyTurn:
 		selectedEnemy.hideReticle = true
 		$ActionList.pause(true)
-		processEnemyTurn(delta)
+		processEnemyTurn(delta, robots)
 	else:
 		selectedEnemy.hideReticle = false
 		processPlayerTurn(delta)
@@ -117,12 +117,12 @@ func processPlayerTurn(delta):
 	update()
 
 
-func processEnemyTurn(delta):
+func processEnemyTurn(delta, robots):
 	if nextMonsterCanAttack == false:
 		return
 	
 	if !enemies[attackingEnemy].hasAttacked:
-		enemies[attackingEnemy].takeTurn()
+		enemies[attackingEnemy].takeTurn(delta, robots)
 	
 	attackingEnemy += 1
 	
