@@ -2,6 +2,7 @@ extends Node
 
 
 func _ready():
+	randomize()
 	$Sprite.visible=true
 	yield(get_tree().create_timer(2), "timeout")
 	$Sprite.visible=false 
@@ -14,6 +15,7 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("ui_quit"):
 		get_tree().quit()
+
 
 func _on_ItemList_item_activated(index):
 	match $ItemList.get_item_text(index):
