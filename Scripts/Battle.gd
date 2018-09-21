@@ -126,11 +126,15 @@ func processEnemyTurn(delta, robots):
 	
 	attackingEnemy += 1
 	
+	print("Enemy attacking: " + str(attackingEnemy))
+	
 	if attackingEnemy >= enemies.size():
+		print("Ending enemy turn")
 		isEnemyTurn = false
 		attackingEnemy = 0
 		nextMonsterCanAttack = true
 		$ActionList.pause(false)
+		$MonsterTimer.stop()
 	else:
 		nextMonsterCanAttack = false
 		$MonsterTimer.start()
