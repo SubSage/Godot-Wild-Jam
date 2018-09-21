@@ -11,6 +11,8 @@ var evolutionChance = 20
 var currentHealth = 5
 var healthMaximum = 5
 
+var attackStrength = 5
+
 var isEvolving = false
 var timesEvolved = 0
 var turnsTillEvolution = 2
@@ -85,7 +87,12 @@ func attack(delta, robots):
 	var robotTarget = 0
 	
 	if robots.size() != 1:
-		pass
+		robotTarget = rand_range(0, robots.size()-1)
+	
+	var selectedRobot = robots[robotTarget]
+	
+	#Timed hits stuff goes here
+	selectedRobot.currentHealth -= int(attackStrength + rand_range(-2, 2))
 
 
 func finish_evolving():
