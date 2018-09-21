@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Themes/ItemList.theme" type="Theme" id=2]
 [ext_resource path="res://Scripts/AutoResizeList.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Art/splash_screen.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Audio/UIClick.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Audio/Godot Game jam title screen 1.wav" type="AudioStream" id=6]
 
 [node name="Game" type="Node" index="0"]
 
@@ -48,6 +49,15 @@ stream = ExtResource( 5 )
 volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." index="3"]
+
+stream = ExtResource( 6 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = true
 mix_target = 0
 bus = "Master"
 
