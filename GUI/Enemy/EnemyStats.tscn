@@ -8,7 +8,7 @@
 [ext_resource path="res://GUI/icon_Heart.png" type="Texture" id=6]
 [ext_resource path="res://GUI/Themes/comic_theme.tres" type="Theme" id=7]
 
-[node name="enemyStats" type="Control" index="0"]
+[node name="enemyStats" type="Control"]
 
 anchor_left = 1.0
 anchor_top = 1.0
