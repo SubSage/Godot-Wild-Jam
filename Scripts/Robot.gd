@@ -1,6 +1,11 @@
 extends Sprite
 
-var health = 100
+var currentHealth = 100
+var healthMaximum = 100
+
+var currentCharge = 5
+var chargeMaximum = 5
+
 var actions = {
 	"Sword Attack": "attack_normal",
 	"Special Attack": "attack_special"

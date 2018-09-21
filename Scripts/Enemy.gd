@@ -1,12 +1,15 @@
 extends Sprite
 
+var monsterName = "Godra"
+
 #If it's not evolving, kaiju generates an int between 1 and 100.
 #If it's lower than this number, it begins evolving.
 #Decrease this number with each passing evolution.
 var evolutionChance = 20
 
-var hp = 5
-var hpMax = 5
+var currentHealth = 5
+var healthMaximum = 5
+
 var isEvolving = false
 var timesEvolved = 0
 var turnsTillEvolution = 2
@@ -18,6 +21,7 @@ var hasAttacked = false
 
 var isSelected = false
 var hideReticle = false
+
 
 func _ready():
 	if(randf() < .35):
@@ -41,9 +45,9 @@ func _process(delta):
 
 
 func attacked(x):
-	hp -= x
-#	print(hp)
-	if hp <= 0:
+	currentHealth -= x
+#	print(currentHealth)
+	if currentHealth <= 0:
 		self.set_texture(gsprite)
 		$BodyParts.visible=false
 		set("modulate", Color(.3,.3,.3))
@@ -81,4 +85,4 @@ func attack():
 
 func finish_evolving():
 	print("Monster emerges in a more powerful form!")
-	hp = hpMax
+	currentHealth = healthMaximum

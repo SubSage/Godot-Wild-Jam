@@ -5,13 +5,11 @@ var enemies = []
 var robots = []
 var Robot = preload("res://Scenes/Robot.tscn")
 var Enemy = preload("res://Scenes/Enemy.tscn")
-var UI = preload("res://GUI/Enemy/EnemyStats.tscn")
 var selectedRobot
 var selectedEnemy
 var enemy=0
 var rect = Rect2(0,0,10,10)
 var focusswitchtime = .2
-var ui
 var isEnemyTurn = false
 onready var actionlist = $ActionList
 
@@ -59,14 +57,17 @@ func _ready():
 	selectedEnemy = enemies[enemy]
 	selectedEnemy.isSelected = true
 	selectedEnemy.set("modulate", Color(1,1,1))
-	ui = UI.instance()
-	add_child(ui)
-	ui.rect_position=Vector2(1200, 950)
 
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_quit"):
 		get_tree().change_scene("res://Scenes/MainMenu.tscn")
+		
+	$enemyStats.update_health(selectedEnemy.currentHealth, selectedEnemy.healthMaximum)
+	$enemyStats.update_name(selectedEnemy.monsterName)
+	
+	$playerStats.update_health(selectedRobot.currentHealth, selectedRobot.healthMaximum)
+	$playerStats.update_battery(selectedRobot.currentCharge, selectedRobot.chargeMaximum)
 	
 	if isEnemyTurn:
 		selectedEnemy.hideReticle = true
@@ -74,7 +75,6 @@ func _process(delta):
 		processEnemyTurn(delta)
 	else:
 		selectedEnemy.hideReticle = false
-		$ActionList.pause(false)
 		processPlayerTurn(delta)
 
 
@@ -110,7 +110,6 @@ func processPlayerTurn(delta):
 		$Tween.start()
 		
 		robot_busy(focusswitchtime, 0)
-	ui.update_hp(enemies[enemy].hp, 5)
 	update()
 
 
@@ -128,6 +127,8 @@ func processEnemyTurn(delta):
 	if isEnemyTurn == false:
 		for resettingEnemy in enemies:
 			resettingEnemy.hasAttacked = false
+		
+		$ActionList.pause(false)
 
 
 func _draw():
@@ -146,7 +147,7 @@ func robot_busy(duration, dmg):
 	
 	selectedEnemy.attacked(dmg)
 	
-	if selectedEnemy.hp <= 0:
+	if selectedEnemy.currentHealth <= 0:
 		enemies[enemy].set("modulate", Color(.2,.2,.2))
 		enemies.remove(enemy)
 #		print("enemy size: " + str(enemies.size()))
