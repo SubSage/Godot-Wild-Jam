@@ -142,7 +142,8 @@ func processEnemyTurn(delta, robots):
 
 
 func _on_MonsterTimer_timeout():
-	nextMonsterCanAttack = true
+	if isEnemyTurn:
+		nextMonsterCanAttack = true
 
 func _draw():
 #	var rect = Rect2(selectedEnemy.position,
