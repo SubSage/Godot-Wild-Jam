@@ -101,12 +101,15 @@ func _process(delta):
 
 func processPlayerTurn(delta):
 	if (Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right")) and actionList.is_paused():
-		var difference = 1
 		if Input.is_action_just_pressed("ui_left"):
-			difference = -1
-		enemyIndex += difference
+			enemyIndex -= 1
+		
+		if Input.is_action_just_pressed("ui_right"):
+			enemyIndex += 1
+		
 		if enemyIndex <= -1:
 			enemyIndex = enemies.size()-1
+		
 		elif enemyIndex >= enemies.size():
 			enemyIndex = 0
 			
