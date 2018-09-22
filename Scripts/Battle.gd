@@ -78,6 +78,7 @@ func _ready():
 	selectedEnemy = enemies[enemyIndex]
 	selectedEnemy.isSelected = true
 	selectedEnemy.set("modulate", Color(1,1,1))
+	
 	$Tween.interpolate_property(selectedEnemy, "position",
 		selectedEnemy.position, Vector2(selectedEnemy.position.x - 300, selectedEnemy.position.y),
 		focusswitchtime, Tween.TRANS_BACK,Tween.EASE_OUT)
