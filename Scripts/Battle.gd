@@ -2,13 +2,22 @@ extends Node2D
 
 
 var turn = 0
-var enemies = []
-var robots = []
+
+
 var Robot = preload("res://Scenes/Robot.tscn")
 var Enemy = preload("res://Scenes/Enemy.tscn")
+
+
+var enemies = []
+var robots = []
+
+
 var selectedRobot
 var selectedEnemy
-var enemy=0
+
+var enemyIndex = 0
+
+
 var focusswitchtime = .2
 
 
@@ -66,7 +75,7 @@ func _ready():
 	eee.z_index=-20
 	eeee.z_index=-20
 	
-	selectedEnemy = enemies[enemy]
+	selectedEnemy = enemies[enemyIndex]
 	selectedEnemy.isSelected = true
 	selectedEnemy.set("modulate", Color(1,1,1))
 
@@ -95,11 +104,11 @@ func processPlayerTurn(delta):
 		var difference = 1
 		if Input.is_action_just_pressed("ui_left"):
 			difference = -1
-		enemy+=difference
-		if enemy<=-1:
-			enemy=enemies.size()-1
-		elif enemy >= enemies.size():
-			enemy=0
+		enemyIndex += difference
+		if enemyIndex <= -1:
+			enemyIndex = enemies.size()-1
+		elif enemyIndex >= enemies.size():
+			enemyIndex = 0
 			
 		#The previously-selected enemy
 		selectedEnemy.isSelected = false
@@ -112,16 +121,14 @@ func processPlayerTurn(delta):
 		selectedEnemy.set("modulate", Color(.2,.6,.6))
 		
 		#The now-selected enemy
-		selectedEnemy=enemies[enemy]
+		selectedEnemy=enemies[enemyIndex]
 		selectedEnemy.isSelected = true
-		enemies[enemy].set("modulate", Color(1,1,1))
+		selectedEnemy.set("modulate", Color(1,1,1))
 		
 		$Tween.interpolate_property(selectedEnemy, "position",
 			selectedEnemy.position, Vector2(selectedEnemy.position.x - 300, selectedEnemy.position.y),
 			focusswitchtime, Tween.TRANS_BACK,Tween.EASE_OUT)
 		$Tween.start()
-		
-		#robot_busy(focusswitchtime, 0)
 	update()
 
 
@@ -165,17 +172,20 @@ func robot_busy(duration, dmg):
 	selectedEnemy.attacked(dmg)
 	
 	if selectedEnemy.currentHealth <= 0:
-		enemies[enemy].set("modulate", Color(.2,.2,.2))
-		enemies.remove(enemy)
+		enemies[enemyIndex].set("modulate", Color(.2,.2,.2))
+		enemies.remove(enemyIndex)
 #		print("enemy size: " + str(enemies.size()))
 		if(enemies.size() == 0):
 			get_tree().change_scene("res://Scenes/MainMenu.tscn")
 		else:
-			enemy-=1
-			if enemy<=0:
-				enemy=enemies.size()-1
-			selectedEnemy=enemies[enemy]
-			enemies[enemy].set("modulate", Color(1,1,1))
+			enemyIndex -= 1
+			if enemyIndex <= 0:
+				enemyIndex = enemies.size() - 1
+			
+			selectedEnemy=enemies[enemyIndex]
+			
+			enemies[enemyIndex].set("modulate", Color(1,1,1))
+			
 			robots[0].stopcombo()
 			return
 	else:
