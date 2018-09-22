@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Battle.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Environments/buildingEdge_placeholder.png" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://GUI/Enemy/PlayerStats.tscn" type="PackedScene" id=5]
 [ext_resource path="res://GUI/Enemy/EnemyStats.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/ActionList.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Art/player/mecha_placeholder.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Art/godra 2/full body.png" type="Texture" id=9]
 
 [node name="Battle" type="Node2D" index="0"]
 
@@ -117,24 +119,58 @@ _sections_unfolded = [ "Anchor", "Margin", "Pause", "Theme", "Transform" ]
 [node name="PlayerSpawn" type="Node2D" parent="Points" index="0"]
 
 position = Vector2( 295.66, 620.689 )
-scale = Vector2( 0.55, 0.55 )
+scale = Vector2( 0.5, 0.5 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="REF" type="Sprite" parent="Points/PlayerSpawn" index="0"]
+
+visible = false
+position = Vector2( 195.894, 116.993 )
+texture = ExtResource( 8 )
 
 [node name="Kaiju1" type="Node2D" parent="Points" index="1"]
 
-position = Vector2( 1548.7, 803.406 )
+position = Vector2( 1750, 800 )
+scale = Vector2( 0.7, 0.7 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="REF" type="Sprite" parent="Points/Kaiju1" index="0"]
+
+visible = false
+texture = ExtResource( 9 )
 
 [node name="Kaiju2" type="Node2D" parent="Points" index="2"]
 
-position = Vector2( 1295.26, 758.822 )
+position = Vector2( 1550, 750 )
+scale = Vector2( 0.7, 0.7 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="REF" type="Sprite" parent="Points/Kaiju2" index="0"]
+
+visible = false
+texture = ExtResource( 9 )
 
 [node name="Kaiju3" type="Node2D" parent="Points" index="3"]
 
-position = Vector2( 1106.68, 688.388 )
+position = Vector2( 1350, 700 )
+scale = Vector2( 0.7, 0.7 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="REF" type="Sprite" parent="Points/Kaiju3" index="0"]
+
+visible = false
+texture = ExtResource( 9 )
 
 [node name="Kaiju4" type="Node2D" parent="Points" index="4"]
 
-position = Vector2( 852.208, 597.504 )
+position = Vector2( 1150, 650 )
+scale = Vector2( 0.7, 0.7 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="REF" type="Sprite" parent="Points/Kaiju4" index="0"]
+
+visible = false
+texture = ExtResource( 9 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
