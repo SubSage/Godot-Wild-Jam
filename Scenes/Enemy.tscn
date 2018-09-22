@@ -1,15 +1,15 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Enemy.gd" type="Script" id=1]
-[ext_resource path="res://Assets/Art/godra 2/tale.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Art/godra 2/foot left.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Art/godra 2/biceps left.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Art/godra 2/body.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Art/godra 2/biceps right.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Art/godra 2/hand left.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Art/godra 2/hand right.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Art/godra 2/head.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Art/godra 2/foot right.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Art/Nova pasta/baby godra/baby_godra_tale.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Art/Nova pasta/baby godra/baby_godra_left foot.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Art/Nova pasta/baby godra/baby_godra_left biceps.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Art/Nova pasta/baby godra/baby_godra_body.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Art/Nova pasta/baby godra/baby_godra_right biceps.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Art/Nova pasta/baby godra/baby_godra_left hand.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Art/Nova pasta/baby godra/baby_godra_right hand.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Art/Nova pasta/baby godra/baby_godra_head.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Art/Nova pasta/baby godra/baby_godra_right foot.png" type="Texture" id=10]
 [ext_resource path="res://GUI/reticle_placeholder.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Art/cocoon.png" type="Texture" id=12]
 
@@ -51,7 +51,7 @@ playback/speed = 1.0
 
 [node name="tale" type="Sprite" parent="BodyParts" index="0"]
 
-position = Vector2( 273.886, -106.757 )
+position = Vector2( 268.612, -221.033 )
 texture = ExtResource( 2 )
 
 [node name="foot left" type="Sprite" parent="BodyParts" index="1"]
@@ -61,7 +61,7 @@ texture = ExtResource( 3 )
 
 [node name="biceps left" type="Sprite" parent="BodyParts" index="2"]
 
-position = Vector2( -202.117, -214.651 )
+position = Vector2( -209.149, -170.699 )
 texture = ExtResource( 4 )
 
 [node name="body" type="Sprite" parent="BodyParts" index="3"]
@@ -71,22 +71,22 @@ texture = ExtResource( 5 )
 
 [node name="biceps right" type="Sprite" parent="BodyParts" index="4"]
 
-position = Vector2( 175.512, -244.798 )
+position = Vector2( 171.996, -176.232 )
 texture = ExtResource( 6 )
 
 [node name="hand left" type="Sprite" parent="BodyParts" index="5"]
 
-position = Vector2( -324.291, -119.451 )
+position = Vector2( -238.145, -63.1921 )
 texture = ExtResource( 7 )
 
 [node name="hand right" type="Sprite" parent="BodyParts" index="6"]
 
-position = Vector2( 208.832, -100.411 )
+position = Vector2( 112.137, -26.5712 )
 texture = ExtResource( 8 )
 
 [node name="head" type="Sprite" parent="BodyParts" index="7"]
 
-position = Vector2( -51.3827, -441.546 )
+position = Vector2( -91.8188, -446.82 )
 texture = ExtResource( 9 )
 
 [node name="foot right" type="Sprite" parent="BodyParts" index="8"]
@@ -96,15 +96,17 @@ texture = ExtResource( 10 )
 
 [node name="Reticle" type="Sprite" parent="." index="3"]
 
+visible = false
 position = Vector2( -55.7754, -157.803 )
 texture = ExtResource( 11 )
 
 [node name="Cocoon" type="Sprite" parent="." index="4"]
 
+visible = false
 position = Vector2( -64.266, -161.773 )
-scale = Vector2( 1.75, 1.75 )
 texture = ExtResource( 12 )
-_sections_unfolded = [ "Transform", "Visibility" ]
+centered = false
+_sections_unfolded = [ "Offset", "Transform", "Visibility" ]
 
 [node name="AmbientSound" type="AudioStreamPlayer" parent="." index="5"]
 
@@ -114,5 +116,14 @@ pitch_scale = 1.0
 autoplay = false
 mix_target = 0
 bus = "Master"
+
+[node name="Timer" type="Timer" parent="." index="6"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 

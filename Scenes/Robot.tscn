@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Assets/Art/robot1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Art/player/mecha_placeholder.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Robot.gd" type="Script" id=2]
 [ext_resource path="res://GUI/timing_Zone.png" type="Texture" id=3]
 [ext_resource path="res://GUI/timingCircle_Inner.png" type="Texture" id=4]

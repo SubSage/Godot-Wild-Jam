@@ -1,0 +1,84 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Assets/Art/player/mecha_placeholder.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Art/player/armLeft_Shoulder.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Art/player/armLeft_Bicep.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Art/player/armLeft_Forearm.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Art/player/handLeft_Fist.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Art/player/handRight_Finger.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Art/player/swordHilt.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Art/player/swordBlade.png" type="Texture" id=8]
+
+[node name="robot" type="Node2D" index="0"]
+
+[node name="robot_reference" type="Sprite" parent="." index="0"]
+
+modulate = Color( 1, 1, 1, 0.397765 )
+position = Vector2( 172.692, -471.799 )
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="armLeft" type="Node2D" parent="." index="1"]
+
+editor/display_folded = true
+position = Vector2( -79.789, -758.254 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="shoulder" type="Sprite" parent="armLeft" index="0"]
+
+position = Vector2( -0.185913, -0.322815 )
+texture = ExtResource( 2 )
+offset = Vector2( -14.6848, 5.10196 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="bicep" type="Sprite" parent="armLeft/shoulder" index="0"]
+
+show_behind_parent = true
+position = Vector2( -17.0243, 20.7784 )
+texture = ExtResource( 3 )
+offset = Vector2( -19.9816, 37.1233 )
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
+
+[node name="forearm" type="Sprite" parent="armLeft/shoulder/bicep" index="0"]
+
+position = Vector2( -33.0001, 86.0003 )
+texture = ExtResource( 4 )
+offset = Vector2( -5.54641, 52.9891 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="hand" type="Sprite" parent="armLeft/shoulder/bicep/forearm" index="0"]
+
+position = Vector2( -1, 94.0003 )
+texture = ExtResource( 5 )
+offset = Vector2( -0.384241, 56.1854 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+
+[node name="finger" type="Sprite" parent="armLeft/shoulder/bicep/forearm/hand" index="0"]
+
+show_behind_parent = true
+position = Vector2( 32.2909, 87.5621 )
+texture = ExtResource( 6 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="hilt" type="Sprite" parent="armLeft/shoulder/bicep/forearm/hand" index="1"]
+
+show_behind_parent = true
+position = Vector2( -10.3955, 70.3669 )
+rotation = 1.77849
+texture = ExtResource( 7 )
+offset = Vector2( -0.313675, -21.8048 )
+_sections_unfolded = [ "Transform", "Visibility" ]
+
+[node name="blade" type="Sprite" parent="armLeft/shoulder/bicep/forearm/hand/hilt" index="0"]
+
+show_behind_parent = true
+position = Vector2( 2.02725, -106.911 )
+texture = ExtResource( 8 )
+offset = Vector2( -31.3967, -299.634 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="chest" type="Node2D" parent="." index="2"]
+
+position = Vector2( 50, -471.799 )
+
+

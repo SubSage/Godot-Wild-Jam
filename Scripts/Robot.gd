@@ -1,10 +1,11 @@
 extends Sprite
 
-var currentHealth = 100
-var healthMaximum = 100
+var currentHealth = 600
+var healthMaximum = 600
 
 var currentCharge = 5
 var chargeMaximum = 5
+var combo = 0
 
 var actions = {
 	"Sword Attack": "attack_normal",
@@ -14,8 +15,8 @@ var actions = {
 }
 
 var movedata=[
-	{name= "attack_normal",hits=1, length=2, timing=2, precision = .2},
-	{name= "special_normal",hits=1, length=2, timing=2, precision = .2}
+	{name= "attack_normal",hits=1, length=2.0, timing=2, precision = .2},
+	{name= "special_normal",hits=1, length=2.0, timing=2, precision = .2}
 ]
 
 
@@ -32,7 +33,7 @@ func _ready():
 	
 	
 func _process(delta):
-	$Sprite.rotate(.5*delta)
+	$Sprite.rotate(.5*delta*combo)
 #	$Sprite/Sprite.apply_scale(Vector2(.99,.99) )
 	if (not timer.is_stopped()) and (abs(movedata[0].length - timer.time_left - movedata[0].timing) <=   movedata[0].precision):
 		set("modulate", Color(.2,.2,.8))
@@ -43,29 +44,35 @@ func _process(delta):
 
 func on_click():
 #	emit_signal("on_click", self, actions)
-	if (not timer.is_stopped()) and (abs(movedata[0].length - timer.time_left - movedata[0].timing) <=   movedata[0].precision):
+	if (not timer.is_stopped()) and (abs(movedata[0].length - timer.time_left - movedata[0].timing) <=   movedata[0].precision) and combo < 4:
 #		print("you did it!"+ str(timer.time_left) )
+		$Particles2D.set_texture(load("res://GUI/label_Perfect.png"))
 		get_node("Particles2D").restart()
 		actionmove("attack_normal")
-		
+	else:
+		$Particles2D.set_texture(load("res://GUI/label_Miss.png"))
+		$Particles2D.restart()
+		stopcombo()
 
 
-func actionmove(var index, var combo = 0):
+func actionmove(var index):
 	if index == "attack_normal":
+		combo+=1
 		$Sprite.visible=true
 		timer.wait_time=movedata[0].length
 		timer.start()
 		get_node("Tween").interpolate_property(get_node("Sprite/Sprite"), "scale",
-				Vector2(1,1), Vector2(.2,.2), movedata[0].length,
-				Tween.TRANS_LINEAR,Tween.EASE_OUT)
+				Vector2(1,1), Vector2(.25,.25), movedata[0].length,
+				Tween.TRANS_QUAD,Tween.EASE_OUT)
 		get_node("Tween").start()
-		emit_signal("busy", movedata[0].length, 1)
+		emit_signal("busy", movedata[0].length, 25)
 
 
 func stopcombo():
 	timer.stop()
 	$Tween.stop_all()
 	$Sprite.visible=false
+	combo = 0
 
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
