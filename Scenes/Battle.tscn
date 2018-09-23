@@ -78,6 +78,7 @@ autostart = false
 
 [node name="UI" type="Control" parent="." index="8"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -115,6 +116,8 @@ margin_bottom = 766.0
 _sections_unfolded = [ "Anchor", "Margin", "Pause", "Theme", "Transform" ]
 
 [node name="Points" type="Node2D" parent="." index="9"]
+
+editor/display_folded = true
 
 [node name="PlayerSpawn" type="Node2D" parent="Points" index="0"]
 

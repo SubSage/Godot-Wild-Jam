@@ -8,8 +8,8 @@ var monsterName = "GODRA BABY"
 #Decrease this number with each passing evolution.
 var evolutionChance = 30
 
-var currentHealth = 350
 var healthMaximum = 350
+var currentHealth = healthMaximum
 
 var attackStrength = 5
 
@@ -20,11 +20,6 @@ var turnsTillEvolution = 2
 var gsprite = preload("res://Assets/Art/power_core.png")
 var bullhead = preload("res://Assets/Art/bull_feast/bull head.png")
 
-var godralvl2 = []
-var godralvl3 = []
-var godralvl4 = []
-var insect = []
-var bull = []
 #Sound arrays
 var ambientSounds = [
 	preload("res://Assets/Audio/kaiju/Growl_0.wav"),

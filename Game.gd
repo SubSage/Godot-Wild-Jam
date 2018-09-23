@@ -31,7 +31,6 @@ func _option_new_game():
 	var menu = Menu.instance()
 	add_child(menu)
 	$ItemList.queue_free()
-#	get_tree().change_scene("res://Scenes/MainMenu.tscn")
 
 
 func _option_continue_game():
@@ -46,4 +45,4 @@ func _option_quit_game():
 
 func ui_move_sound(index):
 	$AudioStreamPlayer.play()
-	pass # replace with function body
+

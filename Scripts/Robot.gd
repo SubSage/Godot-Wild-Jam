@@ -1,11 +1,12 @@
 extends Sprite
 
-var currentHealth = 600
 var healthMaximum = 600
+var currentHealth = healthMaximum
 
-var currentCharge = 5
 var chargeMaximum = 5
+var currentCharge = chargeMaximum
 var combo = 0
+
 
 var actions = {
 	"Sword Attack": "attack_normal",
@@ -26,7 +27,6 @@ signal busy(duration, dmg)
 
 
 func _ready():
-#	set("visible", false)
 	$Sprite.visible=false
 	get_node("Sprite/Area2D/CollisionShape2D").shape.set("extents", Vector2(get_node("Sprite").get_texture().get_width()/2, get_node("Sprite").get_texture().get_height()/2))
 #	$AnimationPlayer.play("idle")
@@ -34,7 +34,6 @@ func _ready():
 	
 func _process(delta):
 	$Sprite.rotate(.5*delta*combo)
-#	$Sprite/Sprite.apply_scale(Vector2(.99,.99) )
 	if (not timer.is_stopped()) and (abs(movedata[0].length - timer.time_left - movedata[0].timing) <=   movedata[0].precision):
 		set("modulate", Color(.2,.2,.8))
 	else:
@@ -43,9 +42,7 @@ func _process(delta):
 
 
 func on_click():
-#	emit_signal("on_click", self, actions)
 	if (not timer.is_stopped()) and (abs(movedata[0].length - timer.time_left - movedata[0].timing) <=   movedata[0].precision) and combo < 4:
-#		print("you did it!"+ str(timer.time_left) )
 		$Particles2D.set_texture(load("res://GUI/label_Perfect.png"))
 		get_node("Particles2D").restart()
 		actionmove("attack_normal")

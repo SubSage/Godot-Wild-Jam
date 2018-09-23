@@ -1,38 +1,35 @@
 extends Node2D
 
-
 var turn = 0
-
 
 var Robot = preload("res://Scenes/Robot.tscn")
 var Enemy = preload("res://Scenes/Enemy.tscn")
 
-
 var enemies = []
 var robots = []
-
 
 var selectedRobot
 var selectedEnemy
 
 var enemyIndex = 0
 
-
 var focusswitchtime = .2
-
 
 #UI elements
 onready var actionList = $UI/ActionList
 onready var enemyStats = $UI/enemyStats
 onready var playerStats = $UI/playerStats
 
-
 var isEnemyTurn = false
 var nextMonsterCanAttack = true
 var attackingEnemy = 0
 
+var Minigame = preload("res://Scenes/Minigame.tscn")
 
 func _ready():
+	var minigame = Minigame.instance()
+	minigame.connect("minigameover",self,"test")
+	add_child(minigame)
 	var r = Robot.instance()
 	r.connect("on_click", self, "getActionList")
 	r.connect("busy", self, "robot_busy")
@@ -84,6 +81,8 @@ func _ready():
 		focusswitchtime, Tween.TRANS_BACK,Tween.EASE_OUT)
 	$Tween.start()
 
+func test():
+	print("yes")
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_quit"):
@@ -182,7 +181,6 @@ func robot_busy(duration, dmg):
 	if selectedEnemy.currentHealth <= 0:
 		enemies[enemyIndex].set("modulate", Color(.2,.2,.2))
 		enemies.remove(enemyIndex)
-#		print("enemy size: " + str(enemies.size()))
 		if(enemies.size() == 0):
 			get_tree().change_scene("res://Scenes/MainMenu.tscn")
 		else:
@@ -222,7 +220,5 @@ func _on_Timer_timeout():
 		actionList.pause(true)
 		isEnemyTurn = true
 		
-	print("turn " + str(turn) + " over!")
-	print(isEnemyTurn)
 	pass
 

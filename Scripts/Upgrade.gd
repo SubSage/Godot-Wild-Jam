@@ -3,7 +3,7 @@ extends Node
 var options = {
 	"test": "test",
 	"test2": "test2",
-	"test3": "b luh",
+	"test3": "bluh",
 	"test4": "hi",
 	"test5": "god"
 }
