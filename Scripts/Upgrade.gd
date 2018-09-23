@@ -18,3 +18,6 @@ func _load_available_options():
 
 func _on_ActionList_action_chosen(action):
 	pass
+
+func _on_Button_pressed():
+	get_tree().change_scene("res://Scenes/MainMenu.tscn")

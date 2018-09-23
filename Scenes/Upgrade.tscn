@@ -26,6 +26,33 @@ autoplay = true
 mix_target = 0
 bus = "Master"
 
+[node name="Button" type="Button" parent="." index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 69.0
+margin_top = 258.0
+margin_right = 217.0
+margin_bottom = 278.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Return to menu"
+flat = false
+align = 1
+
 [connection signal="action_chosen" from="ActionList" to="." method="_on_ActionList_action_chosen"]
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 
 
