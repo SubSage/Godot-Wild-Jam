@@ -10,7 +10,7 @@
 [ext_resource path="res://GUI/radialOver.png" type="Texture" id=8]
 [ext_resource path="res://GUI/radialProgress.png" type="Texture" id=9]
 
-[node name="playerStats" type="Control" index="0"]
+[node name="playerStats" type="Control"]
 
 anchor_left = 0.0
 anchor_top = 1.0

@@ -1,6 +1,6 @@
 extends Node
 
-
+var Menu = preload("res://Scenes/MainMenu.tscn")
 func _ready():
 	randomize()
 	$Sprite.visible=true
@@ -28,7 +28,10 @@ func _on_ItemList_item_activated(index):
 
 
 func _option_new_game():
-	get_tree().change_scene("res://Scenes/MainMenu.tscn")
+	var menu = Menu.instance()
+	add_child(menu)
+	$ItemList.queue_free()
+#	get_tree().change_scene("res://Scenes/MainMenu.tscn")
 
 
 func _option_continue_game():
