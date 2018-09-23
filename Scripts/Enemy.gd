@@ -3,6 +3,7 @@ extends Sprite
 
 var monsterName = "GODRA BABY"
 
+
 #If it's not evolving, kaiju generates an int between 1 and 100.
 #If it's lower than this number, it begins evolving.
 #Decrease this number with each passing evolution.

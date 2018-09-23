@@ -3,6 +3,7 @@ extends Sprite
 var healthMaximum = 600
 var currentHealth = healthMaximum
 
+
 var chargeMaximum = 5
 var currentCharge = chargeMaximum
 var combo = 0

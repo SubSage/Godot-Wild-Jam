@@ -1,6 +1,8 @@
 extends Node
 
 var Menu = preload("res://Scenes/MainMenu.tscn")
+
+
 func _ready():
 	randomize()
 	$Sprite.visible=true

@@ -24,11 +24,11 @@ var isEnemyTurn = false
 var nextMonsterCanAttack = true
 var attackingEnemy = 0
 
-var Minigame = preload("res://Scenes/Minigame.tscn")
+var Minigame = preload("res://Scenes/Minigames/Minigame.tscn")
 
 func _ready():
 	var minigame = Minigame.instance()
-	minigame.connect("minigameover",self,"test")
+	minigame.connect("finished",self,"test")
 	add_child(minigame)
 	var r = Robot.instance()
 	r.connect("on_click", self, "getActionList")
