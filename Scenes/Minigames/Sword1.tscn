@@ -1,5 +1,52 @@
-[gd_scene format=2]
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Minigames/Sword1.gd" type="Script" id=1]
+[ext_resource path="res://GUI/timingCircle_Outer.png" type="Texture" id=2]
+[ext_resource path="res://GUI/timingCircle_Inner.png" type="Texture" id=3]
+[ext_resource path="res://GUI/timing_Zone.png" type="Texture" id=4]
+[ext_resource path="res://GUI/timing_Arrow.png" type="Texture" id=5]
 
 [node name="Node2D" type="Node2D" index="0"]
+
+script = ExtResource( 1 )
+
+[node name="Circle_Outer" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 2 )
+
+[node name="Circle_Inner" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 3 )
+
+[node name="Circle_Target" type="Sprite" parent="." index="2"]
+
+texture = ExtResource( 4 )
+
+[node name="Arrow_Top" type="Sprite" parent="." index="3"]
+
+position = Vector2( 0, -180 )
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Arrow_Bottom" type="Sprite" parent="." index="4"]
+
+position = Vector2( 0, 180 )
+rotation = 3.14159
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Arrow_Left" type="Sprite" parent="." index="5"]
+
+position = Vector2( -180, 0 )
+rotation = 4.71239
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Arrow_Right" type="Sprite" parent="." index="6"]
+
+position = Vector2( 180, 0 )
+rotation = 1.5708
+texture = ExtResource( 5 )
+_sections_unfolded = [ "Transform" ]
 
 

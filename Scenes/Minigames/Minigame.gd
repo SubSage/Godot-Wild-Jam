@@ -18,6 +18,8 @@ func _process(delta):
 		return
 	
 	if _is_finished:
+		_is_enabled = false
+		_is_finished = false
 		emit_signal("finished")
 	else:
 		_update_minigame()
@@ -25,4 +27,4 @@ func _process(delta):
 
 #This function should be overridden in child classes
 func _update_minigame():
-	_is_finished = true
+	pass

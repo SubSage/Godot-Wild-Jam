@@ -94,8 +94,8 @@ func _process(delta):
 		$Cocoon.hide()
 
 
-func attacked(x):
-	currentHealth -= x
+func take_damage(dmg):
+	currentHealth -= dmg
 #	print(currentHealth)
 	if currentHealth <= 0:
 		self.set_texture(gsprite)
@@ -108,7 +108,7 @@ func attacked(x):
 		
 
 
-func takeTurn(delta, robots):
+func take_turn(delta, robots):
 	$Timer.start()
 	if monsterName == "GODRA OMEGA":
 #		print("Monster attacks!")
