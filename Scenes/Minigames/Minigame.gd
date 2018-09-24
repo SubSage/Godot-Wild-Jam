@@ -22,9 +22,9 @@ func _process(delta):
 		_is_finished = false
 		emit_signal("finished")
 	else:
-		_update_minigame()
+		_update_minigame(delta)
 
 
 #This function should be overridden in child classes
-func _update_minigame():
+func _update_minigame(delta):
 	pass

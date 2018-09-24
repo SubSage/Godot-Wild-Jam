@@ -63,8 +63,12 @@ onready var timer = $Timer
 
 func _ready():
 	attackMinigame_Normal = load_minigame()
+	
 	attackMinigame_Normal.connect("hit", self, "_on_attackMinigame_Normal_hit")
 	attackMinigame_Normal.connect("finished", self, "_on_attackMinigame_Normal_finish")
+	
+	attackMinigame_Normal.position = Vector2(800, -680)
+	
 	add_child(attackMinigame_Normal)
 	attackMinigame_Normal.hide()
 #	$AnimationPlayer.play("idle")
@@ -82,6 +86,7 @@ func use_attack(var index):
 			#Always give the player one hit, then start the minigame so they can earn more
 			_on_attackMinigame_Normal_hit()
 			attackMinigame_Normal.start()
+			attackMinigame_Normal.show()
 		
 		"attack_special":
 			print("Special attacks aren't yet implimented")
