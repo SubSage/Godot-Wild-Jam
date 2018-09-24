@@ -7,16 +7,35 @@ const threshold_outer = .39
 const threshold_inner = .265
 
 
+const MAX_SPEED = 7
+const DEFAULT_SPEED = 2
+var minigame_speed = DEFAULT_SPEED
+
+
 func _start_minigame():
-	$Timer.start()
+	#$Timer.start()
+	pass
 
 
 func _update_minigame(delta):
+	var scaleAmount = minigame_speed * 0.3 * delta
+	
+	
+	$Circle_Inner.scale -= Vector2(scaleAmount, scaleAmount)
+	
+	
 	if Input.is_key_pressed(KEY_SPACE):
-		emit_signal("hit")
+		if $Circle_Inner.scale.x < threshold_outer and $Circle_Inner.scale.y > threshold_inner:
+			emit_signal("hit")
+			$Circle_Inner.scale = Vector2(1, 1)
+			
+			if minigame_speed < MAX_SPEED:
+				minigame_speed += 1
+	
+	if $Circle_Inner.scale.x <= 0:
 		_is_finished = true
 
 
-func _on_Timer_timeout():
-	_is_finished = true
-	print("Timer called")
+func _finish_minigame():
+	$Circle_Inner.scale = Vector2(1, 1)
+	minigame_speed = DEFAULT_SPEED
