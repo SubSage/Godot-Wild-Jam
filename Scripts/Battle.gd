@@ -98,6 +98,7 @@ func _process(delta):
 	playerStats.update_health(selectedRobot.currentHealth, selectedRobot.healthMaximum)
 	playerStats.update_battery(selectedRobot.currentCharge, selectedRobot.chargeMaximum)
 	
+	
 	if isEnemyTurn:
 		selectedEnemy.hideReticle = true
 		actionList.pause(true)

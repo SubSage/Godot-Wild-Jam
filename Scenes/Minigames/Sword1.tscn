@@ -49,4 +49,13 @@ rotation = 1.5708
 texture = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 
+[node name="Timer" type="Timer" parent="." index="7"]
+
+process_mode = 1
+wait_time = 5.0
+one_shot = true
+autostart = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
 
