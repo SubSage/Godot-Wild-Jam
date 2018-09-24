@@ -9,8 +9,13 @@ var _is_enabled = false
 var _is_finished = false
 
 
+func _ready():
+	hide()
+
+
 func start():
 	_is_enabled = true
+	show()
 
 
 func _process(delta):
@@ -20,6 +25,7 @@ func _process(delta):
 	if _is_finished:
 		_is_enabled = false
 		_is_finished = false
+		hide()
 		emit_signal("finished")
 	else:
 		_update_minigame(delta)
