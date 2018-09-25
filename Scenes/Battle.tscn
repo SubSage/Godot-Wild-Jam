@@ -10,7 +10,7 @@
 [ext_resource path="res://Assets/Art/player/mecha_placeholder.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Art/godra 2/full body.png" type="Texture" id=9]
 
-[node name="Battle" type="Node2D"]
+[node name="Battle" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -69,16 +69,8 @@ playback/repeat = false
 playback/speed = 1.0
 _sections_unfolded = [ "playback" ]
 
-[node name="MonsterTimer" type="Timer" parent="." index="7"]
+[node name="UI" type="Control" parent="." index="7"]
 
-process_mode = 1
-wait_time = 1.0
-one_shot = true
-autostart = false
-
-[node name="UI" type="Control" parent="." index="8"]
-
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -115,7 +107,7 @@ margin_right = 443.0
 margin_bottom = 766.0
 _sections_unfolded = [ "Anchor", "Margin", "Pause", "Theme", "Transform" ]
 
-[node name="Points" type="Node2D" parent="." index="9"]
+[node name="Points" type="Node2D" parent="." index="8"]
 
 editor/display_folded = true
 
@@ -176,8 +168,6 @@ visible = false
 texture = ExtResource( 9 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-
-[connection signal="timeout" from="MonsterTimer" to="." method="_on_MonsterTimer_timeout"]
 
 [connection signal="action_chosen" from="UI/ActionList" to="." method="_on_ActionList_action_chosen"]
 

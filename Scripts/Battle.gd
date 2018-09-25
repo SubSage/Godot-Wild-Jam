@@ -2,7 +2,6 @@ extends Node2D
 
 var turn = 0
 
-
 var Robot = preload("res://Scenes/Robot.tscn")
 var Enemy = preload("res://Scenes/Enemy.tscn")
 
@@ -13,7 +12,8 @@ var selectedRobot
 var selectedEnemy
 
 var enemyIndex = 0
-
+#-1:player turn;  0+: enemy index taking turn
+var enemyturnindex = -1
 
 var focusswitchtime = .2
 
@@ -23,17 +23,16 @@ onready var actionList = $UI/ActionList
 onready var enemyStats = $UI/enemyStats
 onready var playerStats = $UI/playerStats
 
-
 var isEnemyTurn = false
 var nextMonsterCanAttack = true
 var attackingEnemy = 0
-
 
 func _ready():
 	var r = Robot.instance()
 	r.position = $Points/PlayerSpawn.position
 	selectedRobot=r
 	r.connect("usedNormalAttack", self, "_on_robot_usedNormalAttack")
+	r.connect("robotturnover", self, "robotturnover")
 	add_child(r)
 	move_child(r,0)
 	robots.append(r)
@@ -46,24 +45,28 @@ func _ready():
 	add_child(e)
 	e.scale=Vector2(.7, .7)
 	move_child(e,0)
-	
+	e.connect("finishedTurn", self, "enemyturnFinished")
+	e.connect("enemyattacking", self, "enemyattacking")
 	
 	var ee = Enemy.instance()
 	ee.position = $Points/Kaiju3.position
 	ee.scale=Vector2(.8, .8)
 	add_child(ee)
-	
+	ee.connect("finishedTurn", self, "enemyturnFinished")
+	ee.connect("enemyattacking", self, "enemyattacking")
 	
 	var eee = Enemy.instance()
 	eee.position = $Points/Kaiju2.position
 	eee.scale = Vector2(.9, .9)
 	add_child(eee)
-	
+	eee.connect("finishedTurn", self, "enemyturnFinished")
+	eee.connect("enemyattacking", self, "enemyattacking")
 	
 	var eeee = Enemy.instance()
 	eeee.position = $Points/Kaiju1.position
 	add_child(eeee)
-	
+	eeee.connect("finishedTurn", self, "enemyturnFinished")
+	eeee.connect("enemyattacking", self, "enemyattacking")
 	
 	enemies.append(e)
 	enemies.append(ee)
@@ -80,7 +83,7 @@ func _ready():
 	selectedEnemy = enemies[enemyIndex]
 	selectedEnemy.isSelected = true
 	selectedEnemy.set("modulate", Color(1,1,1))
-	
+	updateUI()
 	
 	$Tween.interpolate_property(selectedEnemy, "position",
 		selectedEnemy.position, Vector2(selectedEnemy.position.x - 300, selectedEnemy.position.y),
@@ -89,64 +92,48 @@ func _ready():
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("ui_quit"):
+	if Input.is_action_just_pressed("ui_quit"): #switch to game menu eventually or something
 		get_tree().change_scene("res://Scenes/MainMenu.tscn")
-		
-	enemyStats.update_health(selectedEnemy.currentHealth, selectedEnemy.healthMaximum)
-	enemyStats.update_name(selectedEnemy.monsterName)
 	
-	playerStats.update_health(selectedRobot.currentHealth, selectedRobot.healthMaximum)
-	playerStats.update_battery(selectedRobot.currentCharge, selectedRobot.chargeMaximum)
-	
-	
-	if isEnemyTurn:
-		selectedEnemy.hideReticle = true
-		actionList.pause(true)
-		processEnemyTurn(delta, robots)
-	else:
-		selectedEnemy.hideReticle = false
-		processPlayerTurn(delta)
-
-
-func processPlayerTurn(delta):
-	if !selectedRobot.is_attacking:
-		player_idle(delta)
-
-
-func player_idle(delta):
 	if (Input.is_action_just_pressed("ui_left") or Input.is_action_just_pressed("ui_right")) and actionList.is_paused():
 		if Input.is_action_just_pressed("ui_left"):
-			enemyIndex -= 1
-		
-		if Input.is_action_just_pressed("ui_right"):
-			enemyIndex += 1
-		
-		if enemyIndex <= -1:
-			enemyIndex = enemies.size()-1
-		
-		elif enemyIndex >= enemies.size():
-			enemyIndex = 0
-			
-		#The previously-selected enemy
-		selectedEnemy.isSelected = false
-		
-		$Tween.interpolate_property(selectedEnemy, "position",
-			selectedEnemy.position, Vector2(selectedEnemy.position.x + 300, selectedEnemy.position.y),
-			focusswitchtime, Tween.TRANS_BACK,Tween.EASE_OUT)
-		$Tween.start()
-		
-		selectedEnemy.set("modulate", Color(.2,.6,.6))
-		
-		#The now-selected enemy
-		selectedEnemy=enemies[enemyIndex]
-		selectedEnemy.isSelected = true
-		selectedEnemy.set("modulate", Color(1,1,1))
-		
-		$Tween.interpolate_property(selectedEnemy, "position",
-			selectedEnemy.position, Vector2(selectedEnemy.position.x - 300, selectedEnemy.position.y),
-			focusswitchtime, Tween.TRANS_BACK,Tween.EASE_OUT)
-		$Tween.start()
+			change_target("left")
+		elif Input.is_action_just_pressed("ui_right"):
+			change_target("right")
 
+func change_target(switch_direction = "default"):
+	#The previously-selected enemy
+	$Tween.interpolate_property(selectedEnemy, "position",
+		selectedEnemy.position, Vector2(selectedEnemy.position.x + 300, selectedEnemy.position.y),
+		focusswitchtime, Tween.TRANS_BACK,Tween.EASE_OUT)
+	$Tween.start()
+	selectedEnemy.set("modulate", Color(.2,.2,.2))
+	selectedEnemy.isSelected = false
+	selectedEnemy.hideReticle = true
+	
+	match switch_direction:
+		"default":
+			enemyIndex = 0
+		"left":
+			enemyIndex-=1
+		"right":
+			enemyIndex+=1
+	if enemyIndex <= -1:
+		enemyIndex = enemies.size()-1
+	elif enemyIndex >= enemies.size():
+		enemyIndex = 0
+		
+	#The now-selected enemy
+	selectedEnemy=enemies[enemyIndex]
+	selectedEnemy.isSelected = true
+	selectedEnemy.hideReticle = false
+	selectedEnemy.set("modulate", Color(1,1,1))
+	$Tween.interpolate_property(selectedEnemy, "position",
+		selectedEnemy.position, Vector2(selectedEnemy.position.x - 300, selectedEnemy.position.y),
+		focusswitchtime, Tween.TRANS_BACK,Tween.EASE_OUT)
+	$Tween.start()
+	updateUI()
+	pass
 
 func robot_busy(duration, dmg):
 	#Not sure if this is unused, I'll remove this later
@@ -180,52 +167,46 @@ func robot_busy(duration, dmg):
 		$Timer.start()
 		actionList.pause(true)
 
-
-func processEnemyTurn(delta, robots):
-	if nextMonsterCanAttack == false:
-		return
-	
-	if !enemies[attackingEnemy].hasAttacked:
-		enemies[attackingEnemy].take_turn(delta, robots)
-	
-	attackingEnemy += 1
-	
-	if attackingEnemy >= enemies.size():
-		isEnemyTurn = false
-		
-		for enemy in enemies:
-			enemy.hasAttacked = false
-		
-		attackingEnemy = 0
-		nextMonsterCanAttack = true
-		
-		actionList.pause(false)
-		$MonsterTimer.stop()
-	else:
-		nextMonsterCanAttack = false
-		$MonsterTimer.start()
-
-
-func _on_MonsterTimer_timeout():
-	if isEnemyTurn:
-		nextMonsterCanAttack = true
-
-
 func getActionList(actions):
 	actionList.replace_options(actions)
 
-
 func _on_ActionList_action_chosen(action):
 	selectedRobot.use_attack(action)
+	actionList.pause(true)
+	selectedEnemy.hideReticle = true
 	turn+=1
 	
-	if turn % 2 == 0:
+func robotturnover():
+	actionList.pause(true)
+	isEnemyTurn = true
+	enemyturnindex=0
+	enemyturnphase()
+	
+func enemyturnphase():
+	if enemyturnindex >= enemies.size():
+		enemyturnindex=-1
 		actionList.pause(false)
-		isEnemyTurn = false
-	else:
-		actionList.pause(true)
-		isEnemyTurn = true
+		isEnemyTurn=false
+		selectedEnemy.hideReticle = false
+		return
+	enemies[enemyturnindex].take_turn(0, robots)
+	enemyturnindex += 1
 
+func enemyattacking():
+	playerStats.update_health(selectedRobot.currentHealth, selectedRobot.healthMaximum)
+	playerStats.update_battery(selectedRobot.currentCharge, selectedRobot.chargeMaximum)
+	pass
 
 func _on_robot_usedNormalAttack(dmg):
 	selectedEnemy.take_damage(dmg)
+	updateUI()
+
+func updateUI():
+	enemyStats.update_health(selectedEnemy.currentHealth, selectedEnemy.healthMaximum)
+	enemyStats.update_name(selectedEnemy.monsterName)
+	update()
+
+func enemyturnFinished():
+	print("enemy finished making a move :D ")
+	enemyturnphase()
+	

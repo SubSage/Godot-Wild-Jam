@@ -2,7 +2,8 @@ extends Sprite
 
 
 var monsterName = "GODRA BABY"
-
+signal finishedTurn
+signal enemyattacking
 
 #If it's not evolving, kaiju generates an int between 1 and 100.
 #If it's lower than this number, it begins evolving.
@@ -105,17 +106,13 @@ func take_damage(dmg):
 	else:
 		$Tween.interpolate_property(self, "modulate", Color(.3,.3,.3), Color(1,1,1), 1,Tween.TRANS_BACK,Tween.EASE_IN)
 		$Tween.start()
-		
 
 
 func take_turn(delta, robots):
 	$Timer.start()
 	if monsterName == "GODRA OMEGA":
-#		print("Monster attacks!")
 		attack(delta, robots)
-		
 	elif isEvolving:
-#		print("Monster is busy evolving!")
 		turnsTillEvolution -= 1
 		$Tween.interpolate_property(self, "modulate", Color(.2,.2,.2), Color(1,1,1), 1,Tween.TRANS_BACK,Tween.EASE_IN)
 		$Tween.start()
@@ -123,12 +120,14 @@ func take_turn(delta, robots):
 		if turnsTillEvolution == 0:
 			finish_evolving()
 			isEvolving = false
+		hasAttacked = true
 	else:
 		var whichAction = (randi() % 100) + 1
 		
 		if whichAction <= evolutionChance:
 #			print("Monster has entered a coccoon!")
 			isEvolving = true
+			hasAttacked = true
 		else:
 #			print("Monster attacks!")
 			attack(delta, robots)
@@ -147,7 +146,7 @@ func attack(delta, robots):
 	
 	#Timed hits stuff goes here
 	selectedRobot.currentHealth -= int(attackStrength + rand_range(-2, 2))
-	
+	emit_signal("enemyattacking")
 	play_sound(ambientSounds)
 
 
@@ -204,6 +203,7 @@ func finish_evolving():
 	isEvolving=false
 	timesEvolved += 1
 	turnsTillEvolution = 2
+	hasAttacked = true
 
 
 func play_sound(soundArray):
@@ -213,4 +213,5 @@ func play_sound(soundArray):
 
 func _on_Timer_timeout():
 	hasAttacked = true
+	emit_signal("finishedTurn")
 	pass # replace with function body
