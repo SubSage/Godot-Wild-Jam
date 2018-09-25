@@ -10,7 +10,7 @@ signal enemyattacking
 #Decrease this number with each passing evolution.
 var evolutionChance = 30
 
-var healthMaximum = 350
+var healthMaximum = 50
 var currentHealth = healthMaximum
 
 var attackStrength = 5
@@ -65,7 +65,6 @@ func _ready():
 		get_node("BodyParts/hand right").set_texture(load("res://Assets/Art/Nova pasta/insect_right hand.png"))
 		get_node("BodyParts/head").set_texture(load("res://Assets/Art/Nova pasta/insect_head.png"))
 		get_node("BodyParts/foot right").set_texture(load("res://Assets/Art/Nova pasta/insect_right foot.png"))
-#		get_node("BodyParts/head").scale=Vector2(.6,.6)
 	elif (type < .6):
 		monsterName = "BIG BULL FROM SPACE"
 		get_node("BodyParts/tale").set_texture(load("res://Assets/Art/Nova pasta/bull_tale.png"))
@@ -77,7 +76,6 @@ func _ready():
 		get_node("BodyParts/hand right").set_texture(load("res://Assets/Art/Nova pasta/bull_right hand.png"))
 		get_node("BodyParts/head").set_texture(load("res://Assets/Art/Nova pasta/bull_head.png"))
 		get_node("BodyParts/foot right").set_texture(load("res://Assets/Art/Nova pasta/bull_right foot.png"))
-#		get_node("BodyParts/head").scale=Vector2(.6,.6)
 	pass
 
 
@@ -205,6 +203,8 @@ func finish_evolving():
 	turnsTillEvolution = 2
 	hasAttacked = true
 
+func killed():
+	print("enemy was killed")
 
 func play_sound(soundArray):
 	var soundNumber = rand_range(0, soundArray.size())

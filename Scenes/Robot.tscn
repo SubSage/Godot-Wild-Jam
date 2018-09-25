@@ -35,7 +35,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 0.40625, 0.192017, 0.192017, 1 ), Color( 0.199219, 0.157974, 0.157974, 1 ) ]
 }
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticlesMaterial" id=2]
 
 render_priority = 0
 trail_divisor = 1
@@ -80,7 +80,7 @@ _sections_unfolded = [ "Angle", "Color", "Hue Variation" ]
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
-_sections_unfolded = [ "Offset", "Transform", "Visibility", "Z Index" ]
+_sections_unfolded = [ "Transform", "Visibility", "Z Index" ]
 
 [node name="Timer" type="Timer" parent="." index="0"]
 
@@ -126,7 +126,7 @@ fract_delta = true
 visibility_rect = Rect2( -100, -100, 200, 200 )
 local_coords = true
 draw_order = 0
-process_material = SubResource( 3 )
+process_material = SubResource( 2 )
 texture = ExtResource( 3 )
 normal_map = null
 h_frames = 1

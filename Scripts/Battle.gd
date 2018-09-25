@@ -140,9 +140,9 @@ func getActionList(actions):
 	actionList.replace_options(actions)
 
 func _on_ActionList_action_chosen(action):
-	selectedRobot.use_attack(action)
-	actionList.pause(true)
 	selectedEnemy.hideReticle = true
+	actionList.pause(true)
+	selectedRobot.use_attack(action)
 
 #robot's turn is over, starting enemy phase
 func robotturnover():
@@ -171,6 +171,19 @@ func enemyattacking():
 
 func _on_robot_usedNormalAttack(dmg):
 	selectedEnemy.take_damage(dmg)
+	if selectedEnemy.currentHealth <= 0:
+		selectedEnemy.killed()
+		enemies.remove(enemyIndex)
+		if(enemies.size() == 0):
+			get_tree().change_scene("res://Scenes/MainMenu.tscn")
+		else:
+			enemyIndex-=1
+			if enemyIndex == -1:
+				enemyIndex = enemies.size()-1
+			selectedEnemy = enemies[enemyIndex]
+			selectedEnemy.set("modulate", Color(1,1,1))
+			robots[0].stopcombo()
+			updateUI()
 	updateUI()
 
 func updateUI():
@@ -179,6 +192,5 @@ func updateUI():
 	update()
 
 func enemyturnFinished():
-	print("enemy finished making a move :D ")
 	enemyturnphase()
 	
