@@ -49,6 +49,8 @@ playback/speed = 1.0
 
 [node name="BodyParts" type="Node2D" parent="." index="2"]
 
+editor/display_folded = true
+
 [node name="tale" type="Sprite" parent="BodyParts" index="0"]
 
 position = Vector2( 268.612, -221.033 )

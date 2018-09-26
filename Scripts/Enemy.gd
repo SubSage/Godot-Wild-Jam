@@ -89,8 +89,9 @@ func _process(delta):
 		$BodyParts.hide()
 		$Cocoon.show()
 	else:
-		$BodyParts.show()
-		$Cocoon.hide()
+		if(currentHealth>0):
+			$BodyParts.show()
+			$Cocoon.hide()
 
 
 func take_damage(dmg):
@@ -204,6 +205,7 @@ func finish_evolving():
 	hasAttacked = true
 
 func killed():
+	
 	print("enemy was killed")
 
 func play_sound(soundArray):

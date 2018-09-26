@@ -89,6 +89,12 @@ func _ready():
 		selectedEnemy.position, Vector2(selectedEnemy.position.x - 300, selectedEnemy.position.y),
 		focusswitchtime, Tween.TRANS_BACK,Tween.EASE_OUT)
 	$Tween.start()
+	
+	$Tween.interpolate_property($Environment, "modulate",
+		Color(1,1,1,1), Color(1,1,1,0),
+		5, Tween.TRANS_SINE,Tween.EASE_IN)
+	$Tween.start()
+	
 
 
 func _process(delta):
