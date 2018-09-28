@@ -6,7 +6,7 @@
 [ext_resource path="res://GUI/timing_Zone.png" type="Texture" id=4]
 [ext_resource path="res://GUI/timing_Arrow.png" type="Texture" id=5]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -29,38 +29,40 @@ scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 4 )
 _sections_unfolded = [ "Transform", "Z Index" ]
 
-[node name="Arrow_Top" type="Sprite" parent="." index="4"]
+[node name="Timer" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[node name="Node2D" type="Node2D" parent="." index="5"]
+
+[node name="Arrow_Top" type="Sprite" parent="Node2D" index="0"]
 
 position = Vector2( 0, -180 )
 texture = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Arrow_Bottom" type="Sprite" parent="." index="5"]
+[node name="Arrow_Bottom" type="Sprite" parent="Node2D" index="1"]
 
 position = Vector2( 0, 180 )
 rotation = 3.14159
 texture = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Arrow_Left" type="Sprite" parent="." index="6"]
+[node name="Arrow_Left" type="Sprite" parent="Node2D" index="2"]
 
 position = Vector2( -180, 0 )
-rotation = 4.71239
+rotation = -1.5708
 texture = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Arrow_Right" type="Sprite" parent="." index="7"]
+[node name="Arrow_Right" type="Sprite" parent="Node2D" index="3"]
 
 position = Vector2( 180, 0 )
 rotation = 1.5708
 texture = ExtResource( 5 )
 _sections_unfolded = [ "Transform" ]
-
-[node name="Timer" type="Timer" parent="." index="8"]
-
-process_mode = 1
-wait_time = 2.0
-one_shot = true
-autostart = false
 
 

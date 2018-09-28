@@ -94,8 +94,6 @@ func _ready():
 		Color(1,1,1,1), Color(1,1,1,0),
 		5, Tween.TRANS_SINE,Tween.EASE_IN)
 	$Tween.start()
-	
-
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_quit"): #switch to game menu eventually or something
