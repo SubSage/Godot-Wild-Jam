@@ -21,6 +21,8 @@ var turnsTillEvolution = 2
 
 var gsprite = preload("res://Assets/Art/power_core.png")
 var bullhead = preload("res://Assets/Art/bull_feast/bull head.png")
+var minigame = preload("res://Scenes/Minigames/Sword1.tscn")
+var selectedRobot
 
 #Sound arrays
 var ambientSounds = [
@@ -108,14 +110,15 @@ func take_damage(dmg):
 
 
 func take_turn(delta, robots):
-	$Timer.start()
+	selectedRobot = robots[0]
+	
 	if monsterName == "GODRA OMEGA":
 		attack(delta, robots)
 	elif isEvolving:
 		turnsTillEvolution -= 1
 		$Tween.interpolate_property(self, "modulate", Color(.2,.2,.2), Color(1,1,1), 1,Tween.TRANS_BACK,Tween.EASE_IN)
 		$Tween.start()
-		
+		$Timer.start()
 		if turnsTillEvolution == 0:
 			finish_evolving()
 			isEvolving = false
@@ -127,6 +130,7 @@ func take_turn(delta, robots):
 #			print("Monster has entered a coccoon!")
 			isEvolving = true
 			hasAttacked = true
+			$Timer.start()
 		else:
 #			print("Monster attacks!")
 			attack(delta, robots)
@@ -136,13 +140,12 @@ func attack(delta, robots):
 	#Select which robot to hit
 	$Tween.interpolate_property(self, "modulate", Color(.9,.2,.2), Color(1,1,1), 1,Tween.TRANS_BACK,Tween.EASE_IN)
 	$Tween.start()
-	var robotTarget = 0
+	var mini = minigame.instance()
+	mini.connect("hit", self, "_on_attackMinigame_Normal_hit")
+	mini.connect("finished", self, "_on_attackMinigame_Normal_finish")
+	add_child(mini)
 	
-	if robots.size() != 1:
-		robotTarget = rand_range(0, robots.size()-1)
-	
-	var selectedRobot = robots[robotTarget]
-	
+func _on_attackMinigame_Normal_hit():
 	#Timed hits stuff goes here
 	selectedRobot.currentHealth -= int(attackStrength + rand_range(-2, 2))
 	emit_signal("enemyattacking")
@@ -204,10 +207,6 @@ func finish_evolving():
 	turnsTillEvolution = 2
 	hasAttacked = true
 
-func killed():
-	
-	print("enemy was killed")
-
 func play_sound(soundArray):
 	var soundNumber = rand_range(0, soundArray.size())
 	$AmbientSound.stream = soundArray[soundNumber]
@@ -216,4 +215,8 @@ func play_sound(soundArray):
 func _on_Timer_timeout():
 	hasAttacked = true
 	emit_signal("finishedTurn")
-	pass # replace with function body
+
+func _on_attackMinigame_Normal_finish():
+	hasAttacked = true
+#	print("enemy mini game ended")
+	emit_signal("finishedTurn")

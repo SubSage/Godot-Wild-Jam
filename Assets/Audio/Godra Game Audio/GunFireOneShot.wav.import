@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/GunFireOneShot.wav-78cfe692b2d139a552cfae0823d78083.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Godra Game Audio/GunFireOneShot.wav"
+dest_files=[ "res://.import/GunFireOneShot.wav-78cfe692b2d139a552cfae0823d78083.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Punch_0.wav-db11a283e1eedf8f5526f5959a17ddbe.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Godra Game Audio/Punch_0.wav"
+dest_files=[ "res://.import/Punch_0.wav-db11a283e1eedf8f5526f5959a17ddbe.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -176,7 +176,6 @@ func enemyattacking():
 func _on_robot_usedNormalAttack(dmg):
 	selectedEnemy.take_damage(dmg)
 	if selectedEnemy.currentHealth <= 0:
-		selectedEnemy.killed()
 		enemies.remove(enemyIndex)
 		if(enemies.size() == 0):
 			get_tree().change_scene("res://Scenes/MainMenu.tscn")

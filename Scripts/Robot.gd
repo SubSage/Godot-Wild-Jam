@@ -60,21 +60,21 @@ func use_attack(var index):
 	match index:
 		"attack_normal":
 			is_attacking = true
-			print("player attack")
+#			print("player attack")
 			#Always give the player one hit, then start the minigame so they can earn more
 			addminigame()
 			_on_attackMinigame_Normal_hit()
 		
 		"attack_special":
-			print("Special attacks aren't yet implimented")
+#			print("Special attacks aren't yet implimented")
 			emit_signal("robotturnover")
 		
 		"defend":
-			print("Defending not yet implimented")
+#			print("Defending not yet implimented")
 			emit_signal("robotturnover")
 		
 		"wait":
-			print("Waiting isn't finished yet")
+#			print("Waiting isn't finished yet")
 			emit_signal("robotturnover")
 
 func stopcombo():
@@ -88,5 +88,5 @@ func _on_attackMinigame_Normal_hit():
 func _on_attackMinigame_Normal_finish():
 	combo = 0
 	is_attacking = false
-	print("robo turn over")
+#	print("robo turn over")
 	emit_signal("robotturnover")

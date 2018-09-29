@@ -30,7 +30,6 @@ func _process(delta):
 				pass
 	if Input.is_action_just_pressed("ui_accept") and $Circle_Inner.scale.x < .95:
 		_finish_minigame()
-#		pass
 	
 	if $Circle_Inner.scale.x <= 0:
 		_finish_minigame()

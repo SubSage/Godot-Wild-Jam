@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ElectricGuitarChord_1.wav-9589b41e27abd77ae2c62666730332d5.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Godra Game Audio/ElectricGuitarChord_1.wav"
+dest_files=[ "res://.import/ElectricGuitarChord_1.wav-9589b41e27abd77ae2c62666730332d5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

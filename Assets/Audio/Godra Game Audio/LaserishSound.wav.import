@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/LaserishSound.wav-bc05363f6bbe6697be3e707ba75456c2.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Godra Game Audio/LaserishSound.wav"
+dest_files=[ "res://.import/LaserishSound.wav-bc05363f6bbe6697be3e707ba75456c2.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

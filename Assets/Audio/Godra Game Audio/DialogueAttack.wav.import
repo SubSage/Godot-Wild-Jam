@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/DialogueAttack.wav-cf52285ca6b1c43f794de0f3dc9b3fea.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Godra Game Audio/DialogueAttack.wav"
+dest_files=[ "res://.import/DialogueAttack.wav-cf52285ca6b1c43f794de0f3dc9b3fea.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

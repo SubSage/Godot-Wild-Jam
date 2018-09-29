@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/UpgradeScreenAmbienceLoopWithTools.wav-0daaf2cdb4e4b9fbe8b436572346aa03.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Godra Game Audio/UpgradeScreenAmbienceLoopWithTools.wav"
+dest_files=[ "res://.import/UpgradeScreenAmbienceLoopWithTools.wav-0daaf2cdb4e4b9fbe8b436572346aa03.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

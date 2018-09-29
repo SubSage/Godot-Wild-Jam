@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/FireWoodCrackleLoop.wav-2cf80452ab4770de3969591941f68f2c.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Godra Game Audio/FireWoodCrackleLoop.wav"
+dest_files=[ "res://.import/FireWoodCrackleLoop.wav-2cf80452ab4770de3969591941f68f2c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

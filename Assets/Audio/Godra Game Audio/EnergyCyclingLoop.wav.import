@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/EnergyCyclingLoop.wav-b88e0c6c39ef30a57ef8660f87527dd9.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Godra Game Audio/EnergyCyclingLoop.wav"
+dest_files=[ "res://.import/EnergyCyclingLoop.wav-b88e0c6c39ef30a57ef8660f87527dd9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
