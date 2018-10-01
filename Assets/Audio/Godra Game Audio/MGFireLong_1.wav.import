@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/MGFireLong_1.wav-bb74762b7e19cce6348186b8d58b6b53.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Godra Game Audio/MGFireLong_1.wav"
+dest_files=[ "res://.import/MGFireLong_1.wav-bb74762b7e19cce6348186b8d58b6b53.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

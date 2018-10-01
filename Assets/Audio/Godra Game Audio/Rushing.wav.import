@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Rushing.wav-67258a6da0156b6dafde2eca29bf4774.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Godra Game Audio/Rushing.wav"
+dest_files=[ "res://.import/Rushing.wav-67258a6da0156b6dafde2eca29bf4774.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

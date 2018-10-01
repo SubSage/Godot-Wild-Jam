@@ -1,73 +1,92 @@
 extends Sprite
 
-var currentHealth = 100
-var healthMaximum = 100
+#Whether or not an attack is being used. Used to pause updating in Battle.gd until the minigame is over.
+var is_attacking = false
 
-var currentCharge = 5
+#Simple signals to emit every time the enemy should be damaged
+signal usedNormalAttack(dmg)
+signal usedSpeciaclAttack(dmg)
+signal robotturnover
+
+#Current health, and maximum
+var healthMaximum = 600
+var currentHealth = healthMaximum
+
+#Current charge, and maximum
 var chargeMaximum = 5
+var currentCharge = chargeMaximum
 
+#How many times the player has successfully comboed. Minigames can use this to terminate if a combo limit is reached
+var combo = 0
+var attackMinigame_Normal = 0
+#Chooseable actions
 var actions = {
 	"Sword Attack": "attack_normal",
-	"Special Attack": "attack_special"
-#	"Defend": "defend",
-#	"Wait": "wait"
+	"Special Attack": "attack_special",
+	"Defend": "defend",
+	"Wait": "wait"
 }
 
-var movedata=[
-	{name= "attack_normal",hits=1, length=2, timing=2, precision = .2},
-	{name= "special_normal",hits=1, length=2, timing=2, precision = .2}
-]
+#The weapon the player currently has. Used for minigame/damage calculations, changed in the Upgrade menu.
+var currentWeapon_Normal = {
+	"name": "Basic Sword",
+	"description": "Just a basic sword. Nothing special about it.",
+	"minigame": "Sword1",
+	"damage": 5,
+	"random": 2
+}
 
+#Instance of the weapons' minigame.
 
 onready var timer = $Timer
-signal on_click(robot, actions)
-signal busy(duration, dmg)
 
+#Leftover of when multiple playable robots were planned.
+#signal on_click(robot, actions)
 
 func _ready():
-#	set("visible", false)
-	$Sprite.visible=false
-	get_node("Sprite/Area2D/CollisionShape2D").shape.set("extents", Vector2(get_node("Sprite").get_texture().get_width()/2, get_node("Sprite").get_texture().get_height()/2))
-#	$AnimationPlayer.play("idle")
+	pass
 	
-	
-func _process(delta):
-	$Sprite.rotate(.5*delta)
-#	$Sprite/Sprite.apply_scale(Vector2(.99,.99) )
-	if (not timer.is_stopped()) and (abs(movedata[0].length - timer.time_left - movedata[0].timing) <=   movedata[0].precision):
-		set("modulate", Color(.2,.2,.8))
-	else:
-		set("modulate", Color(1,1,1))
-	update()
+func addminigame():
+	attackMinigame_Normal = load_minigame()
+	attackMinigame_Normal.connect("hit", self, "_on_attackMinigame_Normal_hit")
+	attackMinigame_Normal.connect("finished", self, "_on_attackMinigame_Normal_finish")
+	attackMinigame_Normal.position = Vector2(800, -680)
+	add_child(attackMinigame_Normal)
 
+func load_minigame():
+	return load("res://Scenes/Minigames/" + currentWeapon_Normal["minigame"] + ".tscn").instance()
 
-func on_click():
-#	emit_signal("on_click", self, actions)
-	if (not timer.is_stopped()) and (abs(movedata[0].length - timer.time_left - movedata[0].timing) <=   movedata[0].precision):
-#		print("you did it!"+ str(timer.time_left) )
-		get_node("Particles2D").restart()
-		actionmove("attack_normal")
+func use_attack(var index):
+	match index:
+		"attack_normal":
+			is_attacking = true
+#			print("player attack")
+			#Always give the player one hit, then start the minigame so they can earn more
+			addminigame()
+			_on_attackMinigame_Normal_hit()
 		
-
-
-func actionmove(var index, var combo = 0):
-	if index == "attack_normal":
-		$Sprite.visible=true
-		timer.wait_time=movedata[0].length
-		timer.start()
-		get_node("Tween").interpolate_property(get_node("Sprite/Sprite"), "scale",
-				Vector2(1,1), Vector2(.2,.2), movedata[0].length,
-				Tween.TRANS_LINEAR,Tween.EASE_OUT)
-		get_node("Tween").start()
-		emit_signal("busy", movedata[0].length, 1)
-
+		"attack_special":
+#			print("Special attacks aren't yet implimented")
+			emit_signal("robotturnover")
+		
+		"defend":
+#			print("Defending not yet implimented")
+			emit_signal("robotturnover")
+		
+		"wait":
+#			print("Waiting isn't finished yet")
+			emit_signal("robotturnover")
 
 func stopcombo():
-	timer.stop()
-	$Tween.stop_all()
-	$Sprite.visible=false
+	attackMinigame_Normal._finish_minigame()
 
+func _on_attackMinigame_Normal_hit():
+	combo += 1
+	var damageDealt = currentWeapon_Normal["damage"] + int(rand_range(-currentWeapon_Normal["random"], currentWeapon_Normal["random"]))
+	emit_signal("usedNormalAttack", damageDealt)
 
-func _on_Area2D_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.is_pressed():
-		on_click()
+func _on_attackMinigame_Normal_finish():
+	combo = 0
+	is_attacking = false
+#	print("robo turn over")
+	emit_signal("robotturnover")

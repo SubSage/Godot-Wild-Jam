@@ -1,5 +1,7 @@
 extends Node
 
+var Menu = preload("res://Scenes/MainMenu.tscn")
+
 
 func _ready():
 	randomize()
@@ -28,7 +30,9 @@ func _on_ItemList_item_activated(index):
 
 
 func _option_new_game():
-	get_tree().change_scene("res://Scenes/MainMenu.tscn")
+	var menu = Menu.instance()
+	add_child(menu)
+	$ItemList.queue_free()
 
 
 func _option_continue_game():
@@ -43,4 +47,4 @@ func _option_quit_game():
 
 func ui_move_sound(index):
 	$AudioStreamPlayer.play()
-	pass # replace with function body
+

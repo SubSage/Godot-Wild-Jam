@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/LaserMGFireFullSequenceOLD.wav-fdbd3e085cc2cfe258e55b1319dae0d4.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Godra Game Audio/LaserMGFireFullSequenceOLD.wav"
+dest_files=[ "res://.import/LaserMGFireFullSequenceOLD.wav-fdbd3e085cc2cfe258e55b1319dae0d4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

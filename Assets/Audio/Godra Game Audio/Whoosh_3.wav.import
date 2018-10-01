@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Whoosh_3.wav-7e33e98f1ceb07d84d6b2a90df188463.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Godra Game Audio/Whoosh_3.wav"
+dest_files=[ "res://.import/Whoosh_3.wav-7e33e98f1ceb07d84d6b2a90df188463.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

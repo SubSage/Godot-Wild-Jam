@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/MetalClattering.wav-6808911ac6f0a2a98b3b085378db74aa.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Godra Game Audio/MetalClattering.wav"
+dest_files=[ "res://.import/MetalClattering.wav-6808911ac6f0a2a98b3b085378db74aa.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

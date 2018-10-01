@@ -16,7 +16,7 @@ func _ready():
 	replace_options(null)
 
 
-func _process(delta):	
+func _process(delta):
 	if options == null:
 		self.hide()
 		return

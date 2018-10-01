@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/DialogueGo.wav-9ff3253c35c2d834de6caf773423694a.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Godra Game Audio/DialogueGo.wav"
+dest_files=[ "res://.import/DialogueGo.wav-9ff3253c35c2d834de6caf773423694a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

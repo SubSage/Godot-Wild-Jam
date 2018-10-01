@@ -1,59 +1,87 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Battle.gd" type="Script" id=1]
-[ext_resource path="res://GUI/battleUI_Reference.png" type="Texture" id=2]
-[ext_resource path="res://Scenes/ActionList.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/Audio/mus_combat.wav" type="AudioStream" id=4]
-[ext_resource path="res://GUI/Enemy/EnemyStats.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Environments/buildingEdge_placeholder.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Environments/env_CityAtNight.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Environments/env_City.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Audio/mus_combat.wav" type="AudioStream" id=5]
 [ext_resource path="res://GUI/Enemy/PlayerStats.tscn" type="PackedScene" id=6]
+[ext_resource path="res://GUI/Enemy/EnemyStats.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/ActionList.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Assets/Art/player/mecha_placeholder.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Art/godra 2/full body.png" type="Texture" id=10]
 
-[node name="Battle" type="Node2D" index="0"]
+[node name="Battle" type="Polygon2D" index="0"]
 
+z_index = 1308
+polygon = PoolVector2Array( 443.441, 323.384, 870.057, 290.267, 1302.52, 286.371, 1851.86, 247.411, 1776.38, 718.063, 1360.96, 740.26, 814.937, 686.971, 556.426, 658.443, 35.2563, 596.088, 131.758, 374.032 )
+uv = PoolVector2Array(  )
+color = Color( 0, 0, 0, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = true
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = true
+invert_border = 426.6
 script = ExtResource( 1 )
+_sections_unfolded = [ "Invert", "Texture", "Z Index" ]
 
-[node name="UIREF" type="TextureRect" parent="." index="0"]
+[node name="Building2" type="Sprite" parent="." index="0"]
 
-visible = false
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 1920.0
-margin_bottom = 1080.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
+position = Vector2( 1800, 680 )
+z_index = -1
 texture = ExtResource( 2 )
-stretch_mode = 0
+centered = false
+flip_h = true
+_sections_unfolded = [ "Offset", "Transform", "Z Index" ]
 
-[node name="ActionList" parent="." index="1" instance=ExtResource( 3 )]
+[node name="Building1" type="Sprite" parent="." index="1"]
 
-margin_left = 916.0
-margin_top = 888.0
-margin_right = 916.0
-margin_bottom = 888.0
-_sections_unfolded = [ "Anchor", "Margin", "Pause", "Theme", "Transform" ]
+position = Vector2( 0, 680 )
+z_index = -1
+texture = ExtResource( 2 )
+centered = false
+_sections_unfolded = [ "Offset", "Transform", "Z Index" ]
 
-[node name="Timer" type="Timer" parent="." index="2"]
+[node name="Environment2" type="Sprite" parent="." index="2"]
+
+z_index = -2000
+texture = ExtResource( 3 )
+centered = false
+_sections_unfolded = [ "Offset", "Z Index" ]
+
+[node name="Environment" type="Sprite" parent="." index="3"]
+
+z_index = -2000
+texture = ExtResource( 4 )
+centered = false
+_sections_unfolded = [ "Material", "Offset", "Visibility", "Z Index" ]
+
+[node name="Background" type="Node2D" parent="." index="4"]
+
+z_index = -2000
+_sections_unfolded = [ "Z Index" ]
+
+[node name="Timer" type="Timer" parent="." index="5"]
 
 process_mode = 1
 wait_time = 1.0
 one_shot = true
 autostart = false
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="3"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="6"]
 
-stream = ExtResource( 4 )
+stream = ExtResource( 5 )
 volume_db = -10.0
 pitch_scale = 1.0
 autoplay = true
 mix_target = 0
 bus = "Master"
 
-[node name="Tween" type="Tween" parent="." index="4"]
+[node name="Tween" type="Tween" parent="." index="7"]
 
 repeat = false
 playback_process_mode = 1
@@ -63,32 +91,105 @@ playback/repeat = false
 playback/speed = 1.0
 _sections_unfolded = [ "playback" ]
 
-[node name="enemyStats" parent="." index="5" instance=ExtResource( 5 )]
+[node name="UI" type="Control" parent="." index="8"]
 
-margin_left = 1288.0
-margin_top = 837.0
-margin_right = 1856.0
-margin_bottom = 1016.0
-_sections_unfolded = [ "Anchor", "Margin", "Theme" ]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 40.0
+margin_bottom = 40.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Material", "Visibility" ]
 
-[node name="playerStats" parent="." index="6" instance=ExtResource( 6 )]
+[node name="playerStats" parent="UI" index="0" instance=ExtResource( 6 )]
 
 margin_left = -2.0
-margin_top = 834.0
+margin_top = 858.0
 margin_right = 566.0
-margin_bottom = 1013.0
+margin_bottom = 1037.0
 
-[node name="MonsterTimer" type="Timer" parent="." index="7"]
+[node name="enemyStats" parent="UI" index="1" instance=ExtResource( 7 )]
 
-process_mode = 1
-wait_time = 1.0
-one_shot = true
-autostart = false
+margin_left = 1312.0
+margin_top = 861.0
+margin_right = 1880.0
+margin_bottom = 1040.0
+_sections_unfolded = [ "Anchor", "Margin", "Theme" ]
 
-[connection signal="action_chosen" from="ActionList" to="." method="_on_ActionList_action_chosen"]
+[node name="ActionList" parent="UI" index="2" instance=ExtResource( 8 )]
 
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+margin_left = 443.0
+margin_top = 766.0
+margin_right = 443.0
+margin_bottom = 766.0
+_sections_unfolded = [ "Anchor", "Margin", "Pause", "Theme", "Transform" ]
 
-[connection signal="timeout" from="MonsterTimer" to="." method="_on_MonsterTimer_timeout"]
+[node name="Points" type="Node2D" parent="." index="9"]
+
+editor/display_folded = true
+
+[node name="PlayerSpawn" type="Node2D" parent="Points" index="0"]
+
+position = Vector2( 295.66, 620.689 )
+scale = Vector2( 0.5, 0.5 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="REF" type="Sprite" parent="Points/PlayerSpawn" index="0"]
+
+visible = false
+position = Vector2( 195.894, 116.993 )
+texture = ExtResource( 9 )
+
+[node name="Kaiju1" type="Node2D" parent="Points" index="1"]
+
+position = Vector2( 1750, 800 )
+scale = Vector2( 0.7, 0.7 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="REF" type="Sprite" parent="Points/Kaiju1" index="0"]
+
+visible = false
+texture = ExtResource( 10 )
+
+[node name="Kaiju2" type="Node2D" parent="Points" index="2"]
+
+position = Vector2( 1550, 750 )
+scale = Vector2( 0.7, 0.7 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="REF" type="Sprite" parent="Points/Kaiju2" index="0"]
+
+visible = false
+texture = ExtResource( 10 )
+
+[node name="Kaiju3" type="Node2D" parent="Points" index="3"]
+
+position = Vector2( 1350, 700 )
+scale = Vector2( 0.7, 0.7 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="REF" type="Sprite" parent="Points/Kaiju3" index="0"]
+
+visible = false
+texture = ExtResource( 10 )
+
+[node name="Kaiju4" type="Node2D" parent="Points" index="4"]
+
+position = Vector2( 1150, 650 )
+scale = Vector2( 0.7, 0.7 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="REF" type="Sprite" parent="Points/Kaiju4" index="0"]
+
+visible = false
+texture = ExtResource( 10 )
+
+[connection signal="action_chosen" from="UI/ActionList" to="." method="_on_ActionList_action_chosen"]
 
 
