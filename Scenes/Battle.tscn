@@ -11,9 +11,23 @@
 [ext_resource path="res://Assets/Art/player/mecha_placeholder.png" type="Texture" id=9]
 [ext_resource path="res://Assets/Art/godra 2/full body.png" type="Texture" id=10]
 
-[node name="Battle" type="Node2D"]
+[node name="Battle" type="Polygon2D" index="0"]
 
+z_index = 1308
+polygon = PoolVector2Array( 443.441, 323.384, 870.057, 290.267, 1302.52, 286.371, 1851.86, 247.411, 1776.38, 718.063, 1360.96, 740.26, 814.937, 686.971, 556.426, 658.443, 35.2563, 596.088, 131.758, 374.032 )
+uv = PoolVector2Array(  )
+color = Color( 0, 0, 0, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = true
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = true
+invert_border = 426.6
 script = ExtResource( 1 )
+_sections_unfolded = [ "Invert", "Texture", "Z Index" ]
 
 [node name="Building2" type="Sprite" parent="." index="0"]
 
@@ -91,6 +105,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
+_sections_unfolded = [ "Material", "Visibility" ]
 
 [node name="playerStats" parent="UI" index="0" instance=ExtResource( 6 )]
 
@@ -174,8 +189,6 @@ _sections_unfolded = [ "Transform" ]
 
 visible = false
 texture = ExtResource( 10 )
-
-[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 [connection signal="action_chosen" from="UI/ActionList" to="." method="_on_ActionList_action_chosen"]
 

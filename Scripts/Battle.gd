@@ -1,4 +1,4 @@
-extends Node2D
+extends Polygon2D
 
 var turn = 0
 
@@ -78,7 +78,7 @@ func _ready():
 	ee.z_index=-20
 	eee.z_index=-20
 	eeee.z_index=-20
-	
+	r.z_index=-1
 	
 	selectedEnemy = enemies[enemyIndex]
 	selectedEnemy.isSelected = true
