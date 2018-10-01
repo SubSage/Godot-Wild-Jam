@@ -1,0 +1,71 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Environments/env_CityAtNight.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Art/cocoon.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Art/player/robot.tscn" type="PackedScene" id=3]
+
+[node name="battle_panels" type="Node2D" index="0"]
+
+[node name="enemy_panel" type="Polygon2D" parent="." index="0"]
+
+polygon = PoolVector2Array( 25.91, 40.2116, 1581.6, 1050.21, 1897.92, 1061.31, 1857.22, 27.263, 44.4081, 18.0139 )
+uv = PoolVector2Array(  )
+color = Color( 0, 0, 0, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = true
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = true
+invert_border = 100.0
+_sections_unfolded = [ "Invert", "Texture", "Visibility" ]
+
+[node name="environment" type="Sprite" parent="enemy_panel" index="0"]
+
+modulate = Color( 0.0806451, 0.741431, 1, 1 )
+show_behind_parent = true
+position = Vector2( 958.202, 543.845 )
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="cocoon" type="Sprite" parent="enemy_panel" index="1"]
+
+show_behind_parent = true
+position = Vector2( 1404, 543.73 )
+texture = ExtResource( 2 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="player_panel" type="Polygon2D" parent="." index="1"]
+
+position = Vector2( 1.84979, 1.84979 )
+polygon = PoolVector2Array( 83.2542, 118.274, 1359.62, 961.788, 1402.15, 1053.86, 192.393, 1046.88, 31.4595, 976.586, 27.7599, 147.871 )
+uv = PoolVector2Array(  )
+color = Color( 0, 0, 0, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = true
+texture = null
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 1, 1 )
+texture_rotation_degrees = 0.0
+invert_enable = true
+invert_border = 100.0
+_sections_unfolded = [ "Invert", "Texture", "Visibility" ]
+
+[node name="environment2" type="Sprite" parent="player_panel" index="0"]
+
+modulate = Color( 0.941406, 0.336578, 0.336578, 1 )
+show_behind_parent = true
+position = Vector2( 516.097, 615.987 )
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="robot" parent="player_panel" index="1" instance=ExtResource( 3 )]
+
+show_behind_parent = true
+position = Vector2( 192.38, 1174.63 )
+_sections_unfolded = [ "Visibility" ]
+
+
