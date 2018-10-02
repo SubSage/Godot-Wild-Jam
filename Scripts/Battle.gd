@@ -1,4 +1,4 @@
-extends Polygon2D
+extends Node2D
 
 var turn = 0
 

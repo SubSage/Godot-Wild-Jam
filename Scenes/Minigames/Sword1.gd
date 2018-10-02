@@ -13,25 +13,25 @@ var minigame_speed = DEFAULT_SPEED
 
 func _process(delta):
 	var scaleAmount = minigame_speed * 0.3 * delta
-	$Circle_Inner.scale -= Vector2(scaleAmount, scaleAmount)
-	rotate(deg2rad(15*delta*minigame_speed))
-	$Node2D.rotate(deg2rad(2*-15*delta*minigame_speed))
-	if $Circle_Inner.scale.x < threshold_outer and $Circle_Inner.scale.y > threshold_inner:
+	$ViewportContainer/Viewport/Node2D/Circle_Inner.scale -= Vector2(scaleAmount, scaleAmount)
+	$ViewportContainer/Viewport/Node2D.rotate(deg2rad(15*delta*minigame_speed))
+	$ViewportContainer/Viewport/Node2D.rotate(deg2rad(2*-15*delta*minigame_speed))
+	if $ViewportContainer/Viewport/Node2D/Circle_Inner.scale.x < threshold_outer and $ViewportContainer/Viewport/Node2D/Circle_Inner.scale.y > threshold_inner:
 		set("modulate", Color(1,1,.1))
 		if Input.is_action_just_pressed("ui_accept"):
 			emit_signal("hit")
 			
 			#resetting this mini game
-			$Circle_Inner.scale = Vector2(1, 1)
+			$ViewportContainer/Viewport/Node2D/Circle_Inner.scale = Vector2(1, 1)
 			set("modulate", Color(1,1,1))
 			
 			if minigame_speed < MAX_SPEED:
 				minigame_speed += .2
 				pass
-	if Input.is_action_just_pressed("ui_accept") and $Circle_Inner.scale.x < .95:
+	if Input.is_action_just_pressed("ui_accept") and $ViewportContainer/Viewport/Node2D/Circle_Inner.scale.x < .95:
 		_finish_minigame()
 	
-	if $Circle_Inner.scale.x <= 0:
+	if $ViewportContainer/Viewport/Node2D/Circle_Inner.scale.x <= 0:
 		_finish_minigame()
 
 

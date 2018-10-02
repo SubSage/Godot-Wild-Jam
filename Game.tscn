@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Themes/ItemList.theme" type="Theme" id=2]
@@ -6,8 +6,9 @@
 [ext_resource path="res://Assets/Art/splash_screen.png" type="Texture" id=4]
 [ext_resource path="res://Assets/Audio/UIClick.wav" type="AudioStream" id=5]
 [ext_resource path="res://Assets/Audio/mus_titlescreen.wav" type="AudioStream" id=6]
+[ext_resource path="res://icon.png" type="Texture" id=7]
 
-[node name="Game" type="Node" index="0"]
+[node name="Game" type="Node"]
 
 script = ExtResource( 1 )
 
@@ -61,6 +62,47 @@ pitch_scale = 1.0
 autoplay = true
 mix_target = 0
 bus = "Master"
+
+[node name="Polygon2D" type="Polygon2D" parent="." index="4"]
+
+position = Vector2( 633.002, 150.317 )
+polygon = PoolVector2Array( -6.19067, -27.9879, 125.395, -83.8265, -34.8984, 183.219 )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = false
+texture = ExtResource( 7 )
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 0.5, 0.5 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 100.0
+_sections_unfolded = [ "Invert", "Texture" ]
+
+[node name="Sprite" type="Sprite" parent="Polygon2D" index="0"]
+
+position = Vector2( 27.0104, 111.725 )
+texture = ExtResource( 7 )
+_sections_unfolded = [ "Material", "Region", "Visibility" ]
+
+[node name="Polygon2D2" type="Polygon2D" parent="." index="5"]
+
+modulate = Color( 0.195312, 0.0984192, 0.0984192, 1 )
+position = Vector2( 609.04, 136.185 )
+polygon = PoolVector2Array( 165.436, -103.232, 220.801, 99.7729, -60.1247, 360.193 )
+uv = PoolVector2Array(  )
+color = Color( 1, 1, 1, 1 )
+vertex_colors = PoolColorArray(  )
+offset = Vector2( 0, 0 )
+antialiased = true
+texture = ExtResource( 7 )
+texture_offset = Vector2( 0, 0 )
+texture_scale = Vector2( 0.5, 0.5 )
+texture_rotation_degrees = 0.0
+invert_enable = false
+invert_border = 0.1
+_sections_unfolded = [ "Invert", "Texture", "Visibility" ]
 
 [connection signal="item_activated" from="ItemList" to="." method="_on_ItemList_item_activated"]
 
