@@ -182,7 +182,7 @@ resource_local_to_scene = true
 flags = 0
 viewport_path = NodePath("Node2D/Viewport")
 
-[node name="Node2D" type="Node2D" index="0"]
+[node name="Node2D" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -278,8 +278,7 @@ _sections_unfolded = [ "Transform" ]
 
 position = Vector2( -1210.62, -910.867 )
 scale = Vector2( 2.69618, 2.01627 )
-z_index = -3
-z_as_relative = false
+z_index = -2
 polygon = PoolVector2Array( -743.181, -346.678, 1541.41, -361.272, 1703.21, 1346.88 )
 uv = PoolVector2Array(  )
 color = Color( 1, 1, 1, 1 )
@@ -333,11 +332,10 @@ _sections_unfolded = [ "Offset" ]
 
 [node name="Polygon2D2" type="Polygon2D" parent="." index="3"]
 
-position = Vector2( -1481.51, 914.336 )
+position = Vector2( -1718.06, 825.628 )
 scale = Vector2( 7.40717, -3.78755 )
-z_index = -2
-z_as_relative = false
-polygon = PoolVector2Array( -64.0154, 481.186, -169.802, -303.411, 522.803, -61.3962 )
+z_index = -1
+polygon = PoolVector2Array( -23.0978, 541.494, -70.0034, -319.221, 447.954, -266.524 )
 uv = PoolVector2Array(  )
 color = Color( 1, 1, 1, 1 )
 vertex_colors = PoolColorArray(  )

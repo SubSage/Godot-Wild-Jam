@@ -91,6 +91,7 @@ func take_damage(dmg):
 
 
 func take_turn(delta, robots):
+	z_index=-1
 	selectedRobot = robots[0]
 	
 	if monsterName == "GODRA OMEGA":
@@ -207,7 +208,9 @@ func play_sound(soundArray):
 func _on_Timer_timeout():
 	hasAttacked = true
 	emit_signal("finishedTurn")
+	z_index=-2
 
 func _on_attackMinigame_Normal_finish():
 	hasAttacked = true
 	emit_signal("finishedTurn")
+	z_index=-2
