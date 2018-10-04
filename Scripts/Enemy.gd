@@ -25,7 +25,7 @@ var minigame = preload("res://Scenes/Minigames/Sword1.tscn")
 var selectedRobot
 
 #Sound arrays
-var ambientSounds = [
+var attackingSounds = [
 	preload("res://Assets/Audio/kaiju/Growl_0.wav"),
 	preload("res://Assets/Audio/kaiju/Growl_1.wav"),
 	preload("res://Assets/Audio/kaiju/Growl_2.wav"),
@@ -49,9 +49,6 @@ var hurtSounds = [
 
 
 var hasAttacked = false
-
-var isSelected = false
-var hideReticle = false
 
 
 func _ready():
@@ -78,32 +75,16 @@ func _ready():
 		get_node("BodyParts/hand right").set_texture(load("res://Assets/Art/Nova pasta/bull_right hand.png"))
 		get_node("BodyParts/head").set_texture(load("res://Assets/Art/Nova pasta/bull_head.png"))
 		get_node("BodyParts/foot right").set_texture(load("res://Assets/Art/Nova pasta/bull_right foot.png"))
-	pass
-
-
-func _process(delta):
-	if isSelected && !hideReticle:
-		$Reticle.show()
-	else:
-		$Reticle.hide()
-	
-	if isEvolving:
-		$BodyParts.hide()
-		$Cocoon.show()
-	else:
-		if(currentHealth>0):
-			$BodyParts.show()
-			$Cocoon.hide()
-
 
 func take_damage(dmg):
+	
 	currentHealth -= dmg
-#	print(currentHealth)
+	
 	if currentHealth <= 0:
 		self.set_texture(gsprite)
-		$BodyParts.visible=false
+		$BodyParts.hide()
 		set("modulate", Color(.3,.3,.3))
-#		queue_free()
+		
 	else:
 		$Tween.interpolate_property(self, "modulate", Color(.3,.3,.3), Color(1,1,1), 1,Tween.TRANS_BACK,Tween.EASE_IN)
 		$Tween.start()
@@ -114,46 +95,52 @@ func take_turn(delta, robots):
 	
 	if monsterName == "GODRA OMEGA":
 		attack(delta, robots)
+		
 	elif isEvolving:
 		turnsTillEvolution -= 1
+		
 		$Tween.interpolate_property(self, "modulate", Color(.2,.2,.2), Color(1,1,1), 1,Tween.TRANS_BACK,Tween.EASE_IN)
 		$Tween.start()
 		$Timer.start()
+		
 		if turnsTillEvolution == 0:
 			finish_evolving()
 			isEvolving = false
+			$BodyParts.show()
+			$Cocoon.hide()
 		hasAttacked = true
 	else:
 		var whichAction = (randi() % 100) + 1
 		
 		if whichAction <= evolutionChance:
-#			print("Monster has entered a coccoon!")
 			isEvolving = true
 			hasAttacked = true
 			$Timer.start()
+			$BodyParts.hide()
+			$Cocoon.show()
 		else:
-#			print("Monster attacks!")
 			attack(delta, robots)
 
 
 func attack(delta, robots):
-	#Select which robot to hit
+	
+	#Modulate enemy red briefly
 	$Tween.interpolate_property(self, "modulate", Color(.9,.2,.2), Color(1,1,1), 1,Tween.TRANS_BACK,Tween.EASE_IN)
 	$Tween.start()
+	
+	#instanciate minigame for player to go against
 	var mini = minigame.instance()
 	mini.connect("hit", self, "_on_attackMinigame_Normal_hit")
 	mini.connect("finished", self, "_on_attackMinigame_Normal_finish")
 	add_child(mini)
 	
 func _on_attackMinigame_Normal_hit():
-	#Timed hits stuff goes here
 	selectedRobot.currentHealth -= int(attackStrength + rand_range(-2, 2))
 	emit_signal("enemyattacking")
-	play_sound(ambientSounds)
+	play_sound(attackingSounds)
 
 
 func finish_evolving():
-#	print("Monster emerges in a more powerful form!")
 	if (monsterName == "GODRA BABY"
 	or monsterName == "BIG BULL FROM SPACE" 
 	or monsterName == "INSECTRO"):
@@ -198,14 +185,19 @@ func finish_evolving():
 		get_node("BodyParts/head").set_texture(load("res://Assets/Art/Nova pasta/grey kaiju/classic_head.png"))
 		get_node("BodyParts/foot right").set_texture(load("res://Assets/Art/Nova pasta/grey kaiju/classic_right foot.png"))
 		
-		pass
 	healthMaximum += 100
 	currentHealth = healthMaximum
 	play_sound(cocoonBreakingSounds)
-	isEvolving=false
+	isEvolving = false
 	timesEvolved += 1
 	turnsTillEvolution = 2
 	hasAttacked = true
+
+func displayReticle(hideReticle):
+	if !hideReticle:
+		$Reticle.show()
+	else:
+		$Reticle.hide()
 
 func play_sound(soundArray):
 	var soundNumber = rand_range(0, soundArray.size())
@@ -218,5 +210,4 @@ func _on_Timer_timeout():
 
 func _on_attackMinigame_Normal_finish():
 	hasAttacked = true
-#	print("enemy mini game ended")
 	emit_signal("finishedTurn")

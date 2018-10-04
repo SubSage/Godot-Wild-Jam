@@ -8,7 +8,7 @@
 [ext_resource path="res://icon.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Art/player/head.png" type="Texture" id=7]
 
-[sub_resource type="Environment" id=3]
+[sub_resource type="Environment" id=1]
 
 background_mode = 0
 background_sky_custom_fov = 0.0
@@ -86,7 +86,7 @@ adjustment_brightness = 1.0
 adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 
-[sub_resource type="Environment" id=4]
+[sub_resource type="Environment" id=2]
 
 background_mode = 0
 background_sky_custom_fov = 0.0
@@ -164,13 +164,13 @@ adjustment_brightness = 1.0
 adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 
-[sub_resource type="World" id=2]
+[sub_resource type="World" id=3]
 
-environment = SubResource( 3 )
-fallback_environment = SubResource( 4 )
+environment = SubResource( 1 )
+fallback_environment = SubResource( 2 )
 _sections_unfolded = [ "Resource" ]
 
-[sub_resource type="ViewportTexture" id=1]
+[sub_resource type="ViewportTexture" id=4]
 
 resource_local_to_scene = true
 flags = 0
@@ -195,7 +195,7 @@ _sections_unfolded = [ "Visibility" ]
 arvr = false
 size = Vector2( 909, 920 )
 own_world = true
-world = SubResource( 2 )
+world = SubResource( 3 )
 transparent_bg = false
 msaa = 0
 hdr = true
@@ -278,19 +278,21 @@ _sections_unfolded = [ "Transform" ]
 
 position = Vector2( -1210.62, -910.867 )
 scale = Vector2( 2.69618, 2.01627 )
-polygon = PoolVector2Array( 125.373, 113.982, 812.808, 115.964, 915.034, 474.549, 776.249, 793.255, 117.969, 795.45, -34.6993, 444.224 )
+z_index = -3
+z_as_relative = false
+polygon = PoolVector2Array( -743.181, -346.678, 1541.41, -361.272, 1703.21, 1346.88 )
 uv = PoolVector2Array(  )
 color = Color( 1, 1, 1, 1 )
 vertex_colors = PoolColorArray(  )
 offset = Vector2( 0, 0 )
 antialiased = true
-texture = SubResource( 1 )
+texture = SubResource( 4 )
 texture_offset = Vector2( 0, 0 )
 texture_scale = Vector2( 1, 1 )
 texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 746.0
-_sections_unfolded = [ "Invert", "Material", "Texture", "Visibility" ]
+_sections_unfolded = [ "Invert", "Material", "Texture", "Visibility", "Z Index" ]
 
 [node name="Node2D" type="Node2D" parent="." index="2"]
 
@@ -302,7 +304,7 @@ arvr = false
 size = Vector2( 320, 240 )
 own_world = false
 world = null
-transparent_bg = true
+transparent_bg = false
 msaa = 0
 hdr = true
 disable_3d = true
@@ -331,9 +333,11 @@ _sections_unfolded = [ "Offset" ]
 
 [node name="Polygon2D2" type="Polygon2D" parent="." index="3"]
 
-position = Vector2( -1849.7, 203.629 )
-scale = Vector2( 12.5549, -3.9797 )
-polygon = PoolVector2Array( 171.51, 225.501, 5.46656, 302.311, 12.4522, 49.8527, 160.584, 126.099 )
+position = Vector2( -1481.51, 914.336 )
+scale = Vector2( 7.40717, -3.78755 )
+z_index = -2
+z_as_relative = false
+polygon = PoolVector2Array( -64.0154, 481.186, -169.802, -303.411, 522.803, -61.3962 )
 uv = PoolVector2Array(  )
 color = Color( 1, 1, 1, 1 )
 vertex_colors = PoolColorArray(  )
@@ -345,6 +349,22 @@ texture_scale = Vector2( 1, 1 )
 texture_rotation_degrees = 0.0
 invert_enable = false
 invert_border = 100.0
-_sections_unfolded = [ "Invert", "Texture" ]
+_sections_unfolded = [ "Invert", "Material", "Texture", "Visibility", "Z Index" ]
+
+[node name="Timer" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[node name="Tween" type="Tween" parent="." index="5"]
+
+repeat = false
+playback_process_mode = 1
+playback_speed = 1.0
+playback/active = false
+playback/repeat = false
+playback/speed = 1.0
 
 

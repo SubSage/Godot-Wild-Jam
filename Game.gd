@@ -5,9 +5,9 @@ var Menu = preload("res://Scenes/MainMenu.tscn")
 
 func _ready():
 	randomize()
-	$Sprite.visible=true
-	yield(get_tree().create_timer(2), "timeout")
-	$Sprite.visible=false 
+	$Sprite.visible = true
+	yield(get_tree().create_timer(1), "timeout")
+	$Sprite.visible = false 
 	$ItemList.grab_focus()
 	$ItemList.select(0)
 	$ItemList.connect("item_selected", self, "ui_move_sound")
@@ -47,4 +47,3 @@ func _option_quit_game():
 
 func ui_move_sound(index):
 	$AudioStreamPlayer.play()
-

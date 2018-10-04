@@ -67,4 +67,3 @@ func is_paused():
 func _on_ItemList_item_selected(index):
 	if $ItemList.is_item_selectable(index):
 		$clicksound.play()
-	pass # replace with function body

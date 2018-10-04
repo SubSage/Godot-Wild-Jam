@@ -74,14 +74,14 @@ func _ready():
 	enemies.append(eeee)
 	
 	
-	e.z_index=-20
-	ee.z_index=-20
-	eee.z_index=-20
-	eeee.z_index=-20
+	e.z_index=-2
+	ee.z_index=-2
+	eee.z_index=-2
+	eeee.z_index=-2
 	r.z_index=-1
 	
 	selectedEnemy = enemies[enemyIndex]
-	selectedEnemy.isSelected = true
+	selectedEnemy.displayReticle(false)
 	selectedEnemy.set("modulate", Color(1,1,1))
 	updateUI()
 	
@@ -107,14 +107,15 @@ func _process(delta):
 
 #update which enemy is selected
 func change_target(switch_direction = "default"):
+	
 	#The previously-selected enemy
 	$Tween.interpolate_property(selectedEnemy, "position",
 		selectedEnemy.position, Vector2(selectedEnemy.position.x + 300, selectedEnemy.position.y),
 		focusswitchtime, Tween.TRANS_BACK,Tween.EASE_OUT)
 	$Tween.start()
+	
 	selectedEnemy.set("modulate", Color(.2,.2,.2))
-	selectedEnemy.isSelected = false
-	selectedEnemy.hideReticle = true
+	selectedEnemy.displayReticle(true)
 	
 	match switch_direction:
 		"default":
@@ -123,28 +124,27 @@ func change_target(switch_direction = "default"):
 			enemyIndex-=1
 		"right":
 			enemyIndex+=1
+	
 	if enemyIndex <= -1:
 		enemyIndex = enemies.size()-1
 	elif enemyIndex >= enemies.size():
 		enemyIndex = 0
-		
+	
 	#The now-selected enemy
 	selectedEnemy=enemies[enemyIndex]
-	selectedEnemy.isSelected = true
-	selectedEnemy.hideReticle = false
+	selectedEnemy.displayReticle(false)
 	selectedEnemy.set("modulate", Color(1,1,1))
 	$Tween.interpolate_property(selectedEnemy, "position",
 		selectedEnemy.position, Vector2(selectedEnemy.position.x - 300, selectedEnemy.position.y),
 		focusswitchtime, Tween.TRANS_BACK,Tween.EASE_OUT)
 	$Tween.start()
 	updateUI()
-	pass
 
 func getActionList(actions):
 	actionList.replace_options(actions)
 
 func _on_ActionList_action_chosen(action):
-	selectedEnemy.hideReticle = true
+	selectedEnemy.displayReticle(true)
 	actionList.pause(true)
 	selectedRobot.use_attack(action)
 
@@ -161,11 +161,12 @@ func enemyturnphase():
 		enemyturnindex=-1
 		actionList.pause(false)
 		isEnemyTurn=false
-		selectedEnemy.hideReticle = false
+		selectedEnemy.displayReticle(false)
 		turn+=1
 		return
 	enemies[enemyturnindex].take_turn(0, robots)
 	enemyturnindex += 1
+	updateUI()
 
 #enemy has hit, update player UI
 func enemyattacking():
@@ -186,13 +187,11 @@ func _on_robot_usedNormalAttack(dmg):
 			selectedEnemy = enemies[enemyIndex]
 			selectedEnemy.set("modulate", Color(1,1,1))
 			robots[0].stopcombo()
-			updateUI()
 	updateUI()
 
 func updateUI():
 	enemyStats.update_health(selectedEnemy.currentHealth, selectedEnemy.healthMaximum)
 	enemyStats.update_name(selectedEnemy.monsterName)
-	update()
 
 func enemyturnFinished():
 	enemyturnphase()
