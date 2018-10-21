@@ -21,7 +21,8 @@ var turnsTillEvolution = 2
 
 var gsprite = preload("res://Assets/Art/power_core.png")
 var bullhead = preload("res://Assets/Art/bull_feast/bull head.png")
-var minigame = preload("res://Scenes/Minigames/Sword1.tscn")
+#var minigame = preload("res://Scenes/Minigames/Sword1.tscn")
+var minigame = preload("res://Scenes/Minigames/Bite.tscn")
 var selectedRobot
 
 #Sound arrays

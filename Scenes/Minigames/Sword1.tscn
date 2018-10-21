@@ -182,12 +182,13 @@ resource_local_to_scene = true
 flags = 0
 viewport_path = NodePath("Node2D/Viewport")
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
 [node name="ViewportContainer" type="Node" parent="." index="0"]
 
+editor/display_folded = true
 _sections_unfolded = [ "Visibility" ]
 
 [node name="Viewport" type="Viewport" parent="ViewportContainer" index="0"]
@@ -279,7 +280,7 @@ _sections_unfolded = [ "Transform" ]
 position = Vector2( -1210.62, -910.867 )
 scale = Vector2( 2.69618, 2.01627 )
 z_index = -2
-polygon = PoolVector2Array( -743.181, -346.678, 1541.41, -361.272, 1703.21, 1346.88 )
+polygon = PoolVector2Array( -743.181, -346.678, 1541.41, -361.272, 1703.21, 1346.88, 781.981, 368.332, 252.82, 610.309, 444.744, 188.682, 36.2209, 419.66, 252.82, 5.36609 )
 uv = PoolVector2Array(  )
 color = Color( 1, 1, 1, 1 )
 vertex_colors = PoolColorArray(  )
@@ -332,6 +333,7 @@ _sections_unfolded = [ "Offset" ]
 
 [node name="Polygon2D2" type="Polygon2D" parent="." index="3"]
 
+visible = false
 position = Vector2( -1718.06, 825.628 )
 scale = Vector2( 7.40717, -3.78755 )
 z_index = -1
